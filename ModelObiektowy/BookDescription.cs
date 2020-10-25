@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Automatic_Library
 {
@@ -9,12 +7,14 @@ namespace Automatic_Library
         private string title;
         private string author;
         private string publisher;
+        private Guid id;
 
         public BookDescription(string title, string author, string publisher)
         {
             this.title = title;
             this.author = author;
             this.publisher = publisher;
+            this.id = Guid.NewGuid();
         }
 
         public string Title
@@ -30,6 +30,11 @@ namespace Automatic_Library
         public string Publisher
         {
             get { return publisher; }
+        }
+
+        public string Id
+        {
+            get { return id.ToString(); }
         }
 
     }

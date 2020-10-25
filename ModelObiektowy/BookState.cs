@@ -1,17 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Automatic_Library
 {
     class BookState
     {
-        private BookDescription book;
         public enum Availability
         {
             Available = 0,
             Unavailable = 1,
         }
+
+        private BookDescription book;
         private DateTime purchaseDate;
         private Guid id;
         private Availability state;
