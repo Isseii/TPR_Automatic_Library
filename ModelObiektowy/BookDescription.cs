@@ -10,9 +10,16 @@ namespace Automatic_Library
         private string author;
         private string publisher;
 
+        public BookDescription(string title, string author, string publisher)
+        {
+            this.title = title;
+            this.author = author;
+            this.publisher = publisher;
+        }
+
         public string Title
         {
-            get { return title;}
+            get { return title; }
         }
 
         public string Author
@@ -25,11 +32,5 @@ namespace Automatic_Library
             get { return publisher; }
         }
 
-        public BookDescription(string title, string author, string publisher)
-        {
-            this.title = title;
-            this.author = author;
-            this.publisher = publisher;
-        }
     }
 }

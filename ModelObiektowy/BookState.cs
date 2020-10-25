@@ -16,21 +16,6 @@ namespace Automatic_Library
         private Guid id;
         private Availability state;
 
-        public Availability State
-        {
-            get { return this.state; }
-            set { this.state = value; }
-        }
-
-        public Guid Id
-        {
-            get { return this.id; }
-        }
-
-        public DateTime PurchaseDate
-        {
-            get { return this.purchaseDate; }
-        }
 
         public BookState(BookDescription book, DateTime purchaseDate, Guid id, Availability state)
         {
@@ -48,16 +33,26 @@ namespace Automatic_Library
             this.id = Guid.NewGuid();
         }
 
+        public Availability State
+        {
+            get { return this.state; }
+            set { this.state = value; }
+        }
 
+        public string Id
+        {
+            get { return this.id.ToString(); }
+        }
 
+        public DateTime PurchaseDate
+        {
+            get { return this.purchaseDate; }
+        }
 
-        /*   public BookDescription Book
-           {
-               get { return this.book.}
-           }*/
-
-
-
+        public BookDescription Book
+        {
+            get { return this.book; }
+        }
 
     }
 }

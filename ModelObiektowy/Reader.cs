@@ -21,5 +21,20 @@ namespace Automatic_Library
             this.lastName = lastName;
             this.id = Guid.NewGuid();
         }
+
+        public string Name
+        {
+            get { return name; }
+        }
+
+        public string LastName
+        {
+            get { return lastName; }
+        }
+
+        public string Id
+        {
+            get { return id.ToString(); }
+        }
     }
 }
