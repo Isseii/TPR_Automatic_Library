@@ -6,27 +6,33 @@ namespace Automatic_Library
     {
         public string Name { get;  set; }
         public string LastName { get; set; }
-
-        private Guid id;
-        public string Id
-        {
-            get { return id.ToString(); }
-        }
+        public Guid Id { get; }
 
         public Reader(string name, string lastName, Guid id)
         {
             this.Name = name;
             this.LastName = lastName;
-            this.id = id;
+            this.Id = id;
         }
 
         public Reader(string name, string lastName)
         {
             this.Name = name;
             this.LastName = lastName;
-            this.id = Guid.NewGuid();
+            this.Id = Guid.NewGuid();
         }
 
+        public override bool Equals(object obj)
+        {
+            if ((obj == null) || !this.GetType().Equals(obj.GetType()))
+            {
+                return false;
+            }
+            else
+            {
+                return (this.Id == ((Reader)obj).Id);
+            }
+        }
 
     }
 }

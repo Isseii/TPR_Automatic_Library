@@ -6,9 +6,9 @@ namespace Automatic_Library
 {
     class DataContext
     {
-        public List<Reader> readers;
-        public Dictionary<int, BookDescription> bookDescriptions;
-        public ObservableCollection<Rent> rents;    //TODO MAKE USE OF OBSERVABLE COLLECTION 
-        public List<BookCopy> bookStates;
+        public List<Reader> Readers;
+        public Dictionary<Guid, BookDescription> BookDescriptions;
+        public ObservableCollection<Rent> Rents;    //TODO MAKE USE OF OBSERVABLE COLLECTION 
+        public List<BookCopy> BookCopies;
     }
 }

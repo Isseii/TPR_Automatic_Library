@@ -19,5 +19,17 @@ namespace Automatic_Library
             this.Id = Guid.NewGuid();
         }
 
+        public override bool Equals(object obj)
+        {
+            if ((obj == null) || !this.GetType().Equals(obj.GetType()))
+            {
+                return false;
+            }
+            else
+            {
+                return (this.Id == ((Rent)obj).Id);
+            }
+        }
+
     }
 }

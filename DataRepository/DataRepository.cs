@@ -10,52 +10,52 @@ namespace Automatic_Library
 
         public void AddBookCopy(BookCopy bookCopy)
         {
-            throw new NotImplementedException();
+            _dataContext.BookCopies.Add(bookCopy);
         }
 
         public void AddBookDescription(BookDescription bookDescription)
         {
-            throw new NotImplementedException();
+            _dataContext.BookDescriptions.Add(bookDescription.Id, bookDescription);
         }
 
         public void AddReader(Reader reader)
         {
-            throw new NotImplementedException();
+            _dataContext.Readers.Add(reader);
         }
 
         public void AddRent(Rent rent)
         {
-            throw new NotImplementedException();
+            _dataContext.Rents.Add(rent);
         }
 
         public void DeleteBookCopy(BookCopy bookCopy)
         {
-            throw new NotImplementedException();
+            _dataContext.BookCopies.Remove(bookCopy);
         }
 
         public void DeleteBookDescription(BookDescription bookDescription)
         {
-            throw new NotImplementedException();
+            _dataContext.BookDescriptions.Remove(bookDescription.Id);
         }
 
         public void DeleteReader(Reader reader)
         {
-            throw new NotImplementedException();
+            _dataContext.Readers.Remove(reader);
         }
 
         public void DeleteRent(Rent rent)
         {
-            throw new NotImplementedException();
+            _dataContext.Rents.Remove(rent);
         }
 
         public IEnumerable<BookCopy> GetAllBookCopies()
         {
-            throw new NotImplementedException();
+            return _dataContext.BookCopies;
         }
 
         public IEnumerable<BookDescription> GetAllBookDescriptions()
         {
-            throw new NotImplementedException();
+            return (IEnumerable<BookDescription>)_dataContext.BookDescriptions;
         }
 
         public IEnumerable<Reader> GetAllReaders()

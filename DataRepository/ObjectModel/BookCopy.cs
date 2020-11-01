@@ -13,18 +13,13 @@ namespace Automatic_Library
         public Availability State { get; set; }
         public DateTime PurchaseDate { get; set; }
         public BookDescription Book { get; set; }
-
-        private Guid id;
-        public string Id
-        {
-            get { return this.id.ToString(); }
-        }
+        public Guid Id { get; }
 
         public BookCopy(BookDescription book, DateTime purchaseDate, Guid id, Availability state)
         {
             this.Book = book;
             this.PurchaseDate = purchaseDate;
-            this.id = id;
+            this.Id = id;
             this.State = state;
         }
 
@@ -33,8 +28,19 @@ namespace Automatic_Library
             this.Book = book;
             this.PurchaseDate = purchaseDate;
             this.State = state;
-            this.id = Guid.NewGuid();
+            this.Id = Guid.NewGuid();
         }
 
+        public override bool Equals(object obj)
+        {
+            if ((obj == null) || !this.GetType().Equals(obj.GetType()))
+            {
+                return false;
+            }
+            else
+            {
+                return (this.Id == ((BookCopy)obj).Id);
+            }
+        }
     }
 }

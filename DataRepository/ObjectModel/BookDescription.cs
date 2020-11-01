@@ -7,19 +7,26 @@ namespace Automatic_Library
         public string Title { get;  set; }
         public string Author { get; set; }
         public string Publisher { get; set; }
-        private Guid id;
+        public Guid Id { get; }
 
         public BookDescription(string title, string author, string publisher)
         {
             this.Title = title;
             this.Author = author;
             this.Publisher = publisher;
-            this.id = Guid.NewGuid();
+            this.Id = Guid.NewGuid();
         }
 
-        public string Id
+        public override bool Equals(object obj)
         {
-            get { return id.ToString(); }
+            if ((obj == null) || !this.GetType().Equals(obj.GetType()))
+            {
+                return false;
+            }
+            else
+            {
+                return (this.Id == ((BookDescription)obj).Id);
+            }
         }
 
     }
