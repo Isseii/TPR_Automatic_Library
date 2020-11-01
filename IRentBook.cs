@@ -8,6 +8,6 @@
 
     interface IReturnBook
     {
-        void ReturnBook(BookState book);
+        void ReturnBook(BookCopy book);
     }
 }

@@ -7,9 +7,9 @@ namespace Automatic_Library
     class DataContext : IRentBook, IReturnBook
     {
         private List<Reader> readers;
-        private Dictionary<string, BookDescription> bookDescriptions;
+        private Dictionary<int, BookDescription> bookDescriptions;
         private ObservableCollection<Rent> rents;    //TODO MAKE USE OF OBSERVABLE COLLECTION 
-        private List<BookState> bookStates;
+        private List<BookCopy> bookStates;
 
 
         public DataContext() {}
@@ -19,18 +19,18 @@ namespace Automatic_Library
         {
             foreach(var x in bookStates)
             {
-                if(x.Book.Id == bookDescription.Id && x.State == BookState.Availability.Available)
+                if(x.Book.Id == bookDescription.Id && x.State == BookCopy.Availability.Available)
                 {
                     rents.Add(new Rent(x, reader, System.DateTime.Now));
-                    x.State = BookState.Availability.Unavailable;
+                    x.State = BookCopy.Availability.Unavailable;
                     return;
                 }
             }
         }
 
-        public void ReturnBook(BookState book)
+        public void ReturnBook(BookCopy book)
         {
-            if(book.State == BookState.Availability.Available)
+            if(book.State == BookCopy.Availability.Available)
             {
                 return;
             }
@@ -38,7 +38,7 @@ namespace Automatic_Library
             {
                 if(rents[i].ReturnDate.Equals(default(DateTime)) && book.Id == rents[i].Book.Id)
                 {
-                    book.State = BookState.Availability.Available;
+                    book.State = BookCopy.Availability.Available;
                     rents[i].ReturnDate = System.DateTime.Now;
                     return;
                 }

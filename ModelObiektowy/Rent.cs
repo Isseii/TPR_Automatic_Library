@@ -7,14 +7,16 @@ namespace Automatic_Library
         public DateTime ReturnDate { get; set; }
         public DateTime RentalDate { get; set; }
         public Reader Reader { get; set; }
+        public Guid Id { get; set; }
 
-        public BookState Book { get; set; }
-        public Rent(BookState book, Reader reader, DateTime rentalDate)
+        public BookCopy Book { get; set; }
+        public Rent(BookCopy book, Reader reader, DateTime rentalDate)
         {
             this.Book = book;
             this.Reader = reader;
             this.RentalDate = rentalDate;
             this.ReturnDate = default(DateTime);
+            this.Id = Guid.NewGuid();
         }
 
     }

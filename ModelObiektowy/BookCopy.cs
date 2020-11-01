@@ -2,7 +2,7 @@
 
 namespace Automatic_Library
 {
-    class BookState
+    class BookCopy
     {
         public enum Availability
         {
@@ -20,7 +20,7 @@ namespace Automatic_Library
             get { return this.id.ToString(); }
         }
 
-        public BookState(BookDescription book, DateTime purchaseDate, Guid id, Availability state)
+        public BookCopy(BookDescription book, DateTime purchaseDate, Guid id, Availability state)
         {
             this.Book = book;
             this.PurchaseDate = purchaseDate;
@@ -28,7 +28,7 @@ namespace Automatic_Library
             this.State = state;
         }
 
-        public BookState(BookDescription book, DateTime purchaseDate, Availability state)
+        public BookCopy(BookDescription book, DateTime purchaseDate, Availability state)
         {
             this.Book = book;
             this.PurchaseDate = purchaseDate;
