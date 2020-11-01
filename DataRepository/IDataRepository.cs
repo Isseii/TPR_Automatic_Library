@@ -32,7 +32,7 @@ namespace Automatic_Library
     interface IDataRepositoryRent
     {
         void AddRent(Rent rent);
-        Rent GetRenty(Guid id);
+        Rent GetRent(Guid id);
         IEnumerable<Rent> GetAllRents();
         void DeleteRent(Rent rent);
     }

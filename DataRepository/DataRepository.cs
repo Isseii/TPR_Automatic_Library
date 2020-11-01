@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
 namespace Automatic_Library
@@ -60,32 +62,39 @@ namespace Automatic_Library
 
         public IEnumerable<Reader> GetAllReaders()
         {
-            throw new NotImplementedException();
+            return _dataContext.Readers;
         }
 
         public IEnumerable<Rent> GetAllRents()
         {
-            throw new NotImplementedException();
+            return _dataContext.Rents;
         }
 
         public BookCopy GetBookCopy(Guid id)
         {
-            throw new NotImplementedException();
+            return _dataContext.BookCopies.Find(x => x.Id.Equals(id));
         }
 
         public BookDescription GetBookDescription(Guid id)
         {
-            throw new NotImplementedException();
+            BookDescription bookDescription = null;
+             _dataContext.BookDescriptions.TryGetValue(id, out bookDescription);
+            return bookDescription;
         }
 
         public Reader GetReader(Guid id)
         {
-            throw new NotImplementedException();
+            return _dataContext.Readers.Find(x => x.Id.Equals(id));
         }
 
-        public Rent GetRenty(Guid id)
+        public Rent GetRent(Guid id)
         {
-            throw new NotImplementedException();
-        }
+            try
+            {
+                return _dataContext.Rents.Single(x => x.Id.Equals(id));
+            }
+            catch(Exception e) {}
+            return null;
+         }
     }
 }
