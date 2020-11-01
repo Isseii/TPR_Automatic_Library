@@ -4,32 +4,17 @@ namespace Automatic_Library
 {
     class BookDescription
     {
-        private string title;
-        private string author;
-        private string publisher;
+        public string Title { get; }
+        public string Author { get; }
+        public string Publisher { get; }
         private Guid id;
 
         public BookDescription(string title, string author, string publisher)
         {
-            this.title = title;
-            this.author = author;
-            this.publisher = publisher;
+            this.Title = title;
+            this.Author = author;
+            this.Publisher = publisher;
             this.id = Guid.NewGuid();
-        }
-
-        public string Title
-        {
-            get { return title; }
-        }
-
-        public string Author
-        {
-            get { return author; }
-        }
-
-        public string Publisher
-        {
-            get { return publisher; }
         }
 
         public string Id

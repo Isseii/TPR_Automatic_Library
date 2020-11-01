@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Automatic_Library
+﻿namespace Automatic_Library
 {
     interface IRentBook
     {

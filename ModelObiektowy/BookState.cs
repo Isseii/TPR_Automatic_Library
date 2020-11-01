@@ -10,47 +10,30 @@ namespace Automatic_Library
             Unavailable = 1,
         }
 
-        private BookDescription book;
-        private DateTime purchaseDate;
+        public Availability State { get; set; }
+        public DateTime PurchaseDate { get; }
+        public BookDescription Book { get; }
+
         private Guid id;
-        private Availability state;
-
-
-        public BookState(BookDescription book, DateTime purchaseDate, Guid id, Availability state)
-        {
-            this.book = book;
-            this.purchaseDate = purchaseDate;
-            this.id = id;
-            this.state = state;
-        }
-
-        public BookState(BookDescription book, DateTime purchaseDate, Availability state)
-        {
-            this.book = book;
-            this.purchaseDate = purchaseDate;
-            this.state = state;
-            this.id = Guid.NewGuid();
-        }
-
-        public Availability State
-        {
-            get { return this.state; }
-            set { this.state = value; }
-        }
-
         public string Id
         {
             get { return this.id.ToString(); }
         }
 
-        public DateTime PurchaseDate
+        public BookState(BookDescription book, DateTime purchaseDate, Guid id, Availability state)
         {
-            get { return this.purchaseDate; }
+            this.Book = book;
+            this.PurchaseDate = purchaseDate;
+            this.id = id;
+            this.State = state;
         }
 
-        public BookDescription Book
+        public BookState(BookDescription book, DateTime purchaseDate, Availability state)
         {
-            get { return this.book; }
+            this.Book = book;
+            this.PurchaseDate = purchaseDate;
+            this.State = state;
+            this.id = Guid.NewGuid();
         }
 
     }
