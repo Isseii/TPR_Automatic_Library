@@ -4,8 +4,8 @@ namespace Automatic_Library
 {
     public class Reader
     {
-        public string Name { get; }
-        public string LastName { get; }
+        public string Name { get;  set; }
+        public string LastName { get; set; }
 
         private Guid id;
         public string Id

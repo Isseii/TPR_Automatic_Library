@@ -11,8 +11,8 @@ namespace Automatic_Library
         }
 
         public Availability State { get; set; }
-        public DateTime PurchaseDate { get; }
-        public BookDescription Book { get; }
+        public DateTime PurchaseDate { get; set; }
+        public BookDescription Book { get; set; }
 
         private Guid id;
         public string Id

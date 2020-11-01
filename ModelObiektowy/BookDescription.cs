@@ -4,9 +4,9 @@ namespace Automatic_Library
 {
     class BookDescription
     {
-        public string Title { get; }
-        public string Author { get; }
-        public string Publisher { get; }
+        public string Title { get;  set; }
+        public string Author { get; set; }
+        public string Publisher { get; set; }
         private Guid id;
 
         public BookDescription(string title, string author, string publisher)
