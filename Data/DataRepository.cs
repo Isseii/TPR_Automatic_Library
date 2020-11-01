@@ -10,6 +10,11 @@ namespace Automatic_Library
     {
         private DataContext _dataContext;
 
+        public DataRepository(DataContext dataContext)
+        {
+            _dataContext = dataContext;
+        }
+
         public void AddBookCopy(BookCopy bookCopy)
         {
             _dataContext.BookCopies.Add(bookCopy);
