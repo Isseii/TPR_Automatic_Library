@@ -8,8 +8,8 @@ namespace Automatic_Library
         public DateTime RentalDate { get; set; }
         public Reader Reader { get; set; }
         public Guid Id { get; set; }
-
         public BookCopy Book { get; set; }
+
         public Rent(BookCopy book, Reader reader, DateTime rentalDate)
         {
             this.Book = book;
