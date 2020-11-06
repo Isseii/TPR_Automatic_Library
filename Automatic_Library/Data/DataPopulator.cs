@@ -36,11 +36,11 @@ namespace Automatic_Library.Data
                 _dataRepository.AddReader(ref a);
             }
 
-            var rents = _populateData.GetRents();
-            for (int i = 0; i < rents.Count(); i++)
+            var Actions = _populateData.GetActions();
+            for (int i = 0; i < Actions.Count(); i++)
             {
-                var a = rents.ElementAt(i);
-                _dataRepository.AddRent(ref a);
+                var a = Actions.ElementAt(i);
+                _dataRepository.AddBookEvent(ref a);
             }
         }
     }

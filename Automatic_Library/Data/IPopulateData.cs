@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Automatic_Library.Data.ObjectModel;
+using Automatic_Library.Data.ObjectModel.BookEvent;
 
 namespace Automatic_Library.Data
 {
@@ -11,6 +12,6 @@ namespace Automatic_Library.Data
 
         IEnumerable<Reader> GetReaders();
 
-        IEnumerable<Rent> GetRents();
+        IEnumerable<BookEvent> GetActions();
     }
 }

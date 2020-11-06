@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Automatic_Library.Data.ObjectModel;
+using Automatic_Library.Data.ObjectModel.BookEvent;
 
 namespace Automatic_Library.Data
 {
@@ -28,12 +29,12 @@ namespace Automatic_Library.Data
         void DeleteBookCopy(ref BookCopy bookCopy);
     }
 
-    interface IDataRepositoryRent
+    interface IDataRepositoryBookEvent
     {
-        void AddRent(ref Rent rent);
-        Rent GetRent(int i);
-        IEnumerable<Rent> GetAllRents();
-        void DeleteRent(ref Rent rent);
+        void AddBookEvent(ref BookEvent bookEvent);
+        BookEvent GetBookEvent(int i);
+        IEnumerable<BookEvent> GetAllBookEvents();
+        void DeleteBookEvent(ref BookEvent bookEvent);
     }
 
 }

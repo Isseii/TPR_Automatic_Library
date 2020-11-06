@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Automatic_Library.Data.ObjectModel;
+using Automatic_Library.Data.ObjectModel.BookEvent;
 
 namespace Automatic_Library.Data
 {
@@ -29,9 +30,9 @@ namespace Automatic_Library.Data
             _dataContext.Readers.Add(reader);
         }
 
-        public override void AddRent(ref Rent rent)
+        public override void AddBookEvent(ref BookEvent bookEvent)
         {
-            _dataContext.Rents.Add(rent);
+            _dataContext.BookEvents.Add(bookEvent);
         }
 
         public override void DeleteBookCopy(ref BookCopy bookCopy)
@@ -49,9 +50,9 @@ namespace Automatic_Library.Data
             _dataContext.Readers.Remove(reader);
         }
 
-        public override void DeleteRent(ref Rent rent)
+        public override void DeleteBookEvent(ref BookEvent bookEvent)
         {
-            _dataContext.Rents.Remove(rent);
+            _dataContext.BookEvents.Remove(bookEvent);
         }
 
         public override IEnumerable<BookCopy> GetAllBookCopies()
@@ -69,9 +70,9 @@ namespace Automatic_Library.Data
             return _dataContext.Readers;
         }
 
-        public override IEnumerable<Rent> GetAllRents()
+        public override IEnumerable<ObjectModel.BookEvent.BookEvent> GetAllBookEvents()
         {
-            return _dataContext.Rents;
+            return _dataContext.BookEvents;
         }
 
         public override BookCopy GetBookCopy(int i)
@@ -91,9 +92,9 @@ namespace Automatic_Library.Data
             return _dataContext.Readers[i];
         }
 
-        public override Rent GetRent(int i)
+        public override BookEvent GetBookEvent(int i)
         {
-            return _dataContext.Rents[i];
+            return _dataContext.BookEvents[i];
         }
     }
 }
