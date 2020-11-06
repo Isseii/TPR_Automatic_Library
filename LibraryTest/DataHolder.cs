@@ -33,21 +33,21 @@ namespace Automatic_Library.Data.DataPopulator
             BookDescriptions.Add(book3);
 
             BookCopies = new List<BookCopy>();
-            BookCopies.Add(new BookCopy(book, new DateTime(2018, 5, 23),"1234567890123"));
+            BookCopies.Add(new BookCopy(book, new DateTime(2015, 5, 23),"1234567890123"));
             BookCopies.Add(new BookCopy(book, new DateTime(2005, 2, 22), "2234567890123"));
             BookCopies.Add(new BookCopy(book1, new DateTime(2012, 2, 1), "3234567890123"));
             BookCopies.Add(new BookCopy(book2, new DateTime(1999, 1, 13), "4234567890123"));
             BookCopies.Add(new BookCopy(book3, new DateTime(2003, 5, 27), "5234567890123"));
 
             BookEvents = new List<BookEvent>();
-            BookEvents.Add(new Rent(BookCopies[0], Readers[2], new DateTime(2020, 4, 4)));
-            BookEvents.Add(new Rent(BookCopies[4], Readers[0], new DateTime(2020, 11, 6)));
-            BookEvents.Add(new Rent(BookCopies[2], Readers[1], new DateTime(2019, 3, 3)));
+            BookEvents.Add(new Rent(BookCopies[0], Readers[2], new DateTime(2017, 4, 4)));
+            BookEvents.Add(new Rent(BookCopies[4], Readers[0], new DateTime(2017, 11, 6)));
+            BookEvents.Add(new Rent(BookCopies[2], Readers[1], new DateTime(2018, 3, 3)));
             BookEvents.Add(new Rent(BookCopies[1], Readers[3], new DateTime(2018, 4, 4)));
-            BookEvents.Add(new Rent(BookCopies[3], Readers[2], new DateTime(2020, 10, 10)));
+            BookEvents.Add(new Rent(BookCopies[3], Readers[2], new DateTime(2020, 5, 5)));
 
-            BookEvents.Add(new Return(BookCopies[0], Readers[2], new DateTime(2020, 5, 5)));
-            BookEvents.Add(new Return(BookCopies[1], Readers[1], new DateTime(2020, 12, 12)));
+            BookEvents.Add(new Return(BookCopies[0], Readers[2], new DateTime(2020, 10, 10)));
+            BookEvents.Add(new Return(BookCopies[1], Readers[3], new DateTime(2020, 11, 6)));
 
         }
     }
