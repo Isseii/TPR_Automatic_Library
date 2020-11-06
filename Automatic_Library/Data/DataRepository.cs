@@ -10,47 +10,47 @@ namespace Automatic_Library.Data
     {
         private DataContext _dataContext;
 
-        public DataRepository(DataContext dataContext)
+        public DataRepository()
         {
-            _dataContext = dataContext;
+            _dataContext = new DataContext();
         }
 
-        public override void AddBookCopy(ref BookCopy bookCopy)
+        public override void AddBookCopy( BookCopy bookCopy)
         {
             _dataContext.BookCopies.Add(bookCopy);
         }
 
-        public override void AddBookDescription(ref BookDescription bookDescription)
+        public override void AddBookDescription( BookDescription bookDescription)
         {
             _dataContext.BookDescriptions.Add(bookDescription.Title, bookDescription);
         }
 
-        public override void AddReader(ref Reader reader)
+        public override void AddReader( Reader reader)
         {
             _dataContext.Readers.Add(reader);
         }
 
-        public override void AddBookEvent(ref BookEvent bookEvent)
+        public override void AddBookEvent( BookEvent bookEvent)
         {
             _dataContext.BookEvents.Add(bookEvent);
         }
 
-        public override void DeleteBookCopy(ref BookCopy bookCopy)
+        public override void DeleteBookCopy( BookCopy bookCopy)
         {
             _dataContext.BookCopies.Remove(bookCopy);
         }
 
-        public override void DeleteBookDescription(ref BookDescription bookDescription)
+        public override void DeleteBookDescription( BookDescription bookDescription)
         {
             _dataContext.BookDescriptions.Remove(bookDescription.Title);
         }
 
-        public override void DeleteReader(ref Reader reader)
+        public override void DeleteReader( Reader reader)
         {
             _dataContext.Readers.Remove(reader);
         }
 
-        public override void DeleteBookEvent(ref BookEvent bookEvent)
+        public override void DeleteBookEvent( BookEvent bookEvent)
         {
             _dataContext.BookEvents.Remove(bookEvent);
         }

@@ -6,14 +6,14 @@ namespace Automatic_Library.Data
 {
     public abstract class AbstractDataRepository : IDataRepositoryBookDescription, IDataRepositoryReader, IDataRepositoryBookCopy, IDataRepositoryBookEvent
     {
-        public abstract void AddBookCopy(ref BookCopy bookCopy);
-        public abstract void AddBookDescription(ref BookDescription bookDescription);
-        public abstract void AddReader(ref Reader reader);
-        public abstract void AddBookEvent(ref BookEvent bookEvent);
-        public abstract void DeleteBookCopy(ref BookCopy bookCopy);
-        public abstract void DeleteBookDescription(ref BookDescription bookDescription);
-        public abstract void DeleteReader(ref Reader reader);
-        public abstract void DeleteBookEvent(ref BookEvent bookEvent);
+        public abstract void AddBookCopy( BookCopy bookCopy);
+        public abstract void AddBookDescription( BookDescription bookDescription);
+        public abstract void AddReader( Reader reader);
+        public abstract void AddBookEvent( BookEvent bookEvent);
+        public abstract void DeleteBookCopy( BookCopy bookCopy);
+        public abstract void DeleteBookDescription( BookDescription bookDescription);
+        public abstract void DeleteReader( Reader reader);
+        public abstract void DeleteBookEvent( BookEvent bookEvent);
         public abstract IEnumerable<BookCopy> GetAllBookCopies();
         public abstract IEnumerable<BookDescription> GetAllBookDescriptions();
         public abstract IEnumerable<Reader> GetAllReaders();

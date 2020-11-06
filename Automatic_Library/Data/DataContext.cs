@@ -9,7 +9,15 @@ namespace Automatic_Library.Data
     {
         public List<Reader> Readers;
         public Dictionary<string, BookDescription> BookDescriptions;
-        public ObservableCollection<BookEvent> BookEvents;    //TODO MAKE USE OF OBSERVABLE COLLECTION 
+        public ObservableCollection<BookEvent> BookEvents;    
         public List<BookCopy> BookCopies;
+
+        public DataContext()
+        {
+            Readers = new List<Reader>();
+            BookDescriptions = new Dictionary<string, BookDescription>();
+            BookEvents = new ObservableCollection<BookEvent>();
+            BookCopies = new List<BookCopy>();
+        }
     }
 }

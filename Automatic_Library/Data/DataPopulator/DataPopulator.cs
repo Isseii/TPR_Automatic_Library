@@ -2,46 +2,40 @@
 
 namespace Automatic_Library.Data.DataPopulator
 {
-    class DataPopulator
+    public class DataPopulator
     {
         private AbstractDataRepository _dataRepository;
         private IPopulateData _populateData;
 
-        DataPopulator(AbstractDataRepository dataRepository, IPopulateData populateData)
+        public DataPopulator(AbstractDataRepository dataRepository, IPopulateData populateData)
         {
             this._dataRepository = dataRepository;
             this._populateData = populateData;
         }
 
-        public void populate()
+         public void populate()
         {
-            var bookCopies = _populateData.GetBookCopies();
-            for (int i = 0; i < bookCopies.Count(); i++)
+            foreach (var bookCopy in _populateData.GetBookCopies())
             {
-                var a = bookCopies.ElementAt(i);
-                _dataRepository.AddBookCopy(ref a);
+                _dataRepository.AddBookCopy(bookCopy);
             }
 
-            var bookDescriptions = _populateData.GetBookDescriptions();
-            for (int i = 0; i < bookDescriptions.Count(); i++)
+            foreach (var bookDescription in _populateData.GetBookDescriptions())
             {
-                var a = bookDescriptions.ElementAt(i);
-                _dataRepository.AddBookDescription(ref a);
+                _dataRepository.AddBookDescription(bookDescription);
             }
 
-            var readers = _populateData.GetReaders();
-            for (int i = 0; i < readers.Count(); i++)
+            foreach (var reader in _populateData.GetReaders())
             {
-                var a = readers.ElementAt(i);
-                _dataRepository.AddReader(ref a);
+                _dataRepository.AddReader(reader);
             }
 
-            var Actions = _populateData.GetBookEvents();
-            for (int i = 0; i < Actions.Count(); i++)
+            foreach (var bookEvent in _populateData.GetBookEvents())
             {
-                var a = Actions.ElementAt(i);
-                _dataRepository.AddBookEvent(ref a);
+                _dataRepository.AddBookEvent(bookEvent);
             }
+
+        
         }
     }
 }

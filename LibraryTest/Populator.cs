@@ -10,7 +10,7 @@ namespace Automatic_Library.Data.DataPopulator
     {
         private DataHolder data;
 
-        Populator()
+        public Populator()
         {
             data = new DataHolder();
         }
@@ -27,7 +27,7 @@ namespace Automatic_Library.Data.DataPopulator
 
         public IEnumerable<BookDescription> GetBookDescriptions()
         {
-            return (IEnumerable<BookDescription>)data.BookDescriptions;
+            return data.BookDescriptions;
         }
 
         public IEnumerable<Reader> GetReaders()
