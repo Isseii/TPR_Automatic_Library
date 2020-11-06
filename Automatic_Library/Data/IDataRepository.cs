@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Automatic_Library.Data.ObjectModel;
 
-namespace Automatic_Library
+namespace Automatic_Library.Data
 {
     interface IDataRepositoryBookDescription
     {

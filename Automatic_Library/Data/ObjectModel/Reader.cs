@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Automatic_Library
+namespace Automatic_Library.Data.ObjectModel
 {
     public class Reader
     {

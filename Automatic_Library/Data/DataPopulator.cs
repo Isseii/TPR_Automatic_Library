@@ -1,4 +1,4 @@
-﻿namespace Automatic_Library
+﻿namespace Automatic_Library.Data
 {
     class DataPopulator
     {

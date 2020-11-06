@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Automatic_Library.Data.ObjectModel;
 
-namespace Automatic_Library
+namespace Automatic_Library.Data
 {
     class DataContext
     {

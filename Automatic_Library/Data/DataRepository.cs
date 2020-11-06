@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
+using Automatic_Library.Data.ObjectModel;
 
-namespace Automatic_Library
+namespace Automatic_Library.Data
 {
     class DataRepository : IDataRepositoryBookDescription, IDataRepositoryReader, IDataRepositoryBookCopy, IDataRepositoryRent
     {
