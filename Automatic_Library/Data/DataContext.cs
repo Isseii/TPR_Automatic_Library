@@ -5,7 +5,7 @@ using Automatic_Library.Data.ObjectModel.BookEvent;
 
 namespace Automatic_Library.Data
 {
-    class DataContext
+    public class DataContext
     {
         public List<Reader> Readers;
         public Dictionary<string, BookDescription> BookDescriptions;

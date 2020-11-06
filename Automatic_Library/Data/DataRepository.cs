@@ -6,7 +6,7 @@ using Automatic_Library.Data.ObjectModel.BookEvent;
 
 namespace Automatic_Library.Data
 {
-    class DataRepository : AbstractDataRepository
+    public class DataRepository : AbstractDataRepository
     {
         private DataContext _dataContext;
 

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Automatic_Library.Data.ObjectModel.BookEvent
 {
-    abstract class BookEvent
+    public abstract class BookEvent
     {
         public BookCopy BookCopy { set; get; }
         public Reader Reader { set; get; }

@@ -2,7 +2,7 @@
 
 namespace Automatic_Library.Data.ObjectModel
 {
-    class BookDescription
+    public class BookDescription
     {
         public string Title { get;  set; }
         public string Author { get; set; }

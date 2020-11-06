@@ -2,7 +2,7 @@
 
 namespace Automatic_Library.Data.ObjectModel
 {
-    class BookCopy
+    public class BookCopy
     {
         public enum Availability
         {
