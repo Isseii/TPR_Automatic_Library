@@ -1,11 +1,13 @@
-﻿namespace Automatic_Library.Data
+﻿using System.Linq;
+
+namespace Automatic_Library.Data
 {
     class DataPopulator
     {
-        private DataRepository _dataRepository;
+        private AbstractDataRepository _dataRepository;
         private IPopulateData _populateData;
 
-        DataPopulator(DataRepository dataRepository, IPopulateData populateData)
+        DataPopulator(AbstractDataRepository dataRepository, IPopulateData populateData)
         {
             this._dataRepository = dataRepository;
             this._populateData = populateData;
@@ -13,26 +15,33 @@
 
         public void populate()
         {
-            foreach (var bookCopy in _populateData.GetBookCopies())
+            var bookCopies = _populateData.GetBookCopies();
+            for (int i = 0; i < bookCopies.Count(); i++)
             {
-                _dataRepository.AddBookCopy(bookCopy);
+                var a = bookCopies.ElementAt(i);
+                _dataRepository.AddBookCopy(ref a);
             }
 
-            foreach (var bookDescription in _populateData.GetBookDescriptions())
+            var bookDescriptions = _populateData.GetBookDescriptions();
+            for (int i = 0; i < bookDescriptions.Count(); i++)
             {
-                _dataRepository.AddBookDescription(bookDescription);
+                var a = bookDescriptions.ElementAt(i);
+                _dataRepository.AddBookDescription(ref a);
             }
 
-            foreach (var reader in _populateData.GetReaders())
+            var readers = _populateData.GetReaders();
+            for (int i = 0; i < readers.Count(); i++)
             {
-                _dataRepository.AddReader(reader);
+                var a = readers.ElementAt(i);
+                _dataRepository.AddReader(ref a);
             }
 
-            foreach (var rent in _populateData.GetRents())
+            var rents = _populateData.GetRents();
+            for (int i = 0; i < rents.Count(); i++)
             {
-                _dataRepository.AddRent(rent);
+                var a = rents.ElementAt(i);
+                _dataRepository.AddRent(ref a);
             }
-
         }
     }
 }

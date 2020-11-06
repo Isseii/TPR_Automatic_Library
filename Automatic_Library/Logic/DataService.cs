@@ -8,7 +8,7 @@ namespace Automatic_Library.Logic
 {
     class DataService
     {
-        private DataRepository _dataRepository;
+        private AbstractDataRepository _dataRepository;
         
         IEnumerable<BookDescription> AllBookDescriptions()
         {
@@ -27,13 +27,7 @@ namespace Automatic_Library.Logic
 
         Rent AddRent(BookCopy bookCopy, Reader reader)
         {
-            if(_dataRepository.GetReader(reader.Id) == null || _dataRepository.GetBookCopy(bookCopy.Id) == null)
-            {
-                return null;
-            }
-            Rent rent = new Rent(bookCopy, reader, DateTime.Now);
-            _dataRepository.AddRent(rent);
-            return rent;
+            throw new NotImplementedException();
         }
         
 

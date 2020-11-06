@@ -5,7 +5,7 @@ using Automatic_Library.Data.ObjectModel;
 
 namespace Automatic_Library.Data
 {
-    class DataRepository : IDataRepositoryBookDescription, IDataRepositoryReader, IDataRepositoryBookCopy, IDataRepositoryRent
+    class DataRepository : AbstractDataRepository
     {
         private DataContext _dataContext;
 
@@ -14,91 +14,86 @@ namespace Automatic_Library.Data
             _dataContext = dataContext;
         }
 
-        public void AddBookCopy(BookCopy bookCopy)
+        public override void AddBookCopy(ref BookCopy bookCopy)
         {
             _dataContext.BookCopies.Add(bookCopy);
         }
 
-        public void AddBookDescription(BookDescription bookDescription)
+        public override void AddBookDescription(ref BookDescription bookDescription)
         {
-            _dataContext.BookDescriptions.Add(bookDescription.Id, bookDescription);
+            _dataContext.BookDescriptions.Add(bookDescription.Title, bookDescription);
         }
 
-        public void AddReader(Reader reader)
+        public override void AddReader(ref Reader reader)
         {
             _dataContext.Readers.Add(reader);
         }
 
-        public void AddRent(Rent rent)
+        public override void AddRent(ref Rent rent)
         {
             _dataContext.Rents.Add(rent);
         }
 
-        public void DeleteBookCopy(BookCopy bookCopy)
+        public override void DeleteBookCopy(ref BookCopy bookCopy)
         {
             _dataContext.BookCopies.Remove(bookCopy);
         }
 
-        public void DeleteBookDescription(BookDescription bookDescription)
+        public override void DeleteBookDescription(ref BookDescription bookDescription)
         {
-            _dataContext.BookDescriptions.Remove(bookDescription.Id);
+            _dataContext.BookDescriptions.Remove(bookDescription.Title);
         }
 
-        public void DeleteReader(Reader reader)
+        public override void DeleteReader(ref Reader reader)
         {
             _dataContext.Readers.Remove(reader);
         }
 
-        public void DeleteRent(Rent rent)
+        public override void DeleteRent(ref Rent rent)
         {
             _dataContext.Rents.Remove(rent);
         }
 
-        public IEnumerable<BookCopy> GetAllBookCopies()
+        public override IEnumerable<BookCopy> GetAllBookCopies()
         {
             return _dataContext.BookCopies;
         }
 
-        public IEnumerable<BookDescription> GetAllBookDescriptions()
+        public override IEnumerable<BookDescription> GetAllBookDescriptions()
         {
             return (IEnumerable<BookDescription>)_dataContext.BookDescriptions;
         }
 
-        public IEnumerable<Reader> GetAllReaders()
+        public override IEnumerable<Reader> GetAllReaders()
         {
             return _dataContext.Readers;
         }
 
-        public IEnumerable<Rent> GetAllRents()
+        public override IEnumerable<Rent> GetAllRents()
         {
             return _dataContext.Rents;
         }
 
-        public BookCopy GetBookCopy(Guid id)
+        public override BookCopy GetBookCopy(int i)
         {
-            return _dataContext.BookCopies.Find(x => x.Id.Equals(id));
+            return _dataContext.BookCopies[i];
         }
 
-        public BookDescription GetBookDescription(Guid id)
+        public override BookDescription GetBookDescription(string title)
         {
             BookDescription bookDescription = null;
-             _dataContext.BookDescriptions.TryGetValue(id, out bookDescription);
+             _dataContext.BookDescriptions.TryGetValue(title, out bookDescription);
             return bookDescription;
         }
 
-        public Reader GetReader(Guid id)
+        public override Reader GetReader(int i)
         {
-            return _dataContext.Readers.Find(x => x.Id.Equals(id));
+            return _dataContext.Readers[i];
         }
 
-        public Rent GetRent(Guid id)
+        public override Rent GetRent(int i)
         {
-            try
-            {
-                return _dataContext.Rents.Single(x => x.Id.Equals(id));
-            }
-            catch(Exception e) {}
-            return null;
-         }
+            return _dataContext.Rents[i];
+        }
     }
 }

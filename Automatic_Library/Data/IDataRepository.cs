@@ -6,37 +6,34 @@ namespace Automatic_Library.Data
 {
     interface IDataRepositoryBookDescription
     {
-        void AddBookDescription(BookDescription bookDescription);
-        BookDescription GetBookDescription(Guid id);
+        void AddBookDescription(ref BookDescription bookDescription);
+        BookDescription GetBookDescription(string title);
         IEnumerable<BookDescription> GetAllBookDescriptions();
-        void DeleteBookDescription(BookDescription bookDescription);
+        void DeleteBookDescription(ref BookDescription bookDescription);
     }
-
 
     interface IDataRepositoryReader
     {
-        void AddReader(Reader reader);
-        Reader GetReader(Guid id);
+        void AddReader(ref Reader reader);
+        Reader GetReader(int i);
         IEnumerable<Reader> GetAllReaders();
-        void DeleteReader(Reader reader);
+        void DeleteReader(ref Reader reader);
     }
 
     interface IDataRepositoryBookCopy
     {
-        void AddBookCopy(BookCopy bookCopy);
-        BookCopy GetBookCopy(Guid id);
+        void AddBookCopy(ref BookCopy bookCopy);
+        BookCopy GetBookCopy(int i);
         IEnumerable<BookCopy> GetAllBookCopies();
-        void DeleteBookCopy(BookCopy bookCopy);
+        void DeleteBookCopy(ref BookCopy bookCopy);
     }
 
     interface IDataRepositoryRent
     {
-        void AddRent(Rent rent);
-        Rent GetRent(Guid id);
+        void AddRent(ref Rent rent);
+        Rent GetRent(int i);
         IEnumerable<Rent> GetAllRents();
-        void DeleteRent(Rent rent);
+        void DeleteRent(ref Rent rent);
     }
-
-
 
 }
