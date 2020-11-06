@@ -2,9 +2,9 @@
 using Automatic_Library.Data.ObjectModel;
 using Automatic_Library.Data.ObjectModel.BookEvent;
 
-namespace Automatic_Library.Data
+namespace Automatic_Library.Data.DataPopulator
 {
-    interface IPopulateData
+    public interface IPopulateData
     {
         IEnumerable<BookCopy> GetBookCopies();
 
@@ -12,6 +12,6 @@ namespace Automatic_Library.Data
 
         IEnumerable<Reader> GetReaders();
 
-        IEnumerable<BookEvent> GetActions();
+        IEnumerable<BookEvent> GetBookEvents();
     }
 }

@@ -14,11 +14,11 @@ namespace Automatic_Library.Data.ObjectModel
         public DateTime PurchaseDate { get; set; }
         public BookDescription Book { get; set; }
 
-        public BookCopy(BookDescription book, DateTime purchaseDate, Availability state)
+        public BookCopy(BookDescription book, DateTime purchaseDate)
         {
             this.Book = book;
             this.PurchaseDate = purchaseDate;
-            this.State = state;
+            this.State = Availability.Available;
         }
 
     }

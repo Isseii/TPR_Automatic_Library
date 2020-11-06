@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace Automatic_Library.Data
+namespace Automatic_Library.Data.DataPopulator
 {
     class DataPopulator
     {
@@ -36,7 +36,7 @@ namespace Automatic_Library.Data
                 _dataRepository.AddReader(ref a);
             }
 
-            var Actions = _populateData.GetActions();
+            var Actions = _populateData.GetBookEvents();
             for (int i = 0; i < Actions.Count(); i++)
             {
                 var a = Actions.ElementAt(i);

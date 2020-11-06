@@ -6,6 +6,7 @@ namespace Automatic_Library.Data.ObjectModel.BookEvent
     {
         public Rent(BookCopy book, Reader reader, DateTime rentDate) : base(book, reader, rentDate)
         {
+            book.State = BookCopy.Availability.Unavailable;
         }
     }
 }
