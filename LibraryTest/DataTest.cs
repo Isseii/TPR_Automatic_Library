@@ -23,11 +23,20 @@ namespace LibraryTest
 
             var book = new BookDescription("Metro 2033", "Dmitry Glukhovsky", "Insignis");
 
+            var Reader = new Reader("Dominik", "Karski");
 
-            Assert.AreEqual(repository.GetBookCopy(0).Book.Author, new BookCopy(book, new DateTime(2018, 5, 23)).Book.Author);
-            
+            Assert.AreEqual(repository.GetBookCopy(0).Book, book);
 
-            
+            Assert.AreEqual(repository.GetReader(0), Reader);
+
+            var reader1 = new Reader("Joe", "Biden");
+
+            var bookDesc = new BookDescription("Metro 2033", "Dmitry Glukhovsky", "Insignis");
+
+            var book1 = new BookCopy(bookDesc, new DateTime(2018, 5, 23), "1234567890123");
+
+
+            Assert.AreEqual(repository.GetBookEvent(0), new Rent(book1 , reader1, new DateTime(2020, 4, 4)));
         }
     }
 }

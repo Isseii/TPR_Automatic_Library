@@ -15,5 +15,22 @@ namespace Automatic_Library.Data.ObjectModel
             this.Publisher = publisher;
         }
 
+        public override bool Equals(object obj)
+        {
+            if ((obj == null) || !this.GetType().Equals(obj.GetType()))
+            {
+                return false;
+            }
+            var description = (BookDescription)obj;
+
+
+            if (this.Title == description.Title && this.Author == description.Author && this.Publisher == description.Publisher)
+            {
+                return true;
+            }
+
+            return false;
+          
+        }
     }
 }

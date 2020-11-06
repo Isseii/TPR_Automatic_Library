@@ -33,11 +33,11 @@ namespace Automatic_Library.Data.DataPopulator
             BookDescriptions.Add(book3);
 
             BookCopies = new List<BookCopy>();
-            BookCopies.Add(new BookCopy(book, new DateTime(2018, 5, 23)));
-            BookCopies.Add(new BookCopy(book, new DateTime(2005, 2, 22)));
-            BookCopies.Add(new BookCopy(book1, new DateTime(2012, 2, 1)));
-            BookCopies.Add(new BookCopy(book2, new DateTime(1999, 1, 13)));
-            BookCopies.Add(new BookCopy(book3, new DateTime(2003, 5, 27)));
+            BookCopies.Add(new BookCopy(book, new DateTime(2018, 5, 23),"1234567890123"));
+            BookCopies.Add(new BookCopy(book, new DateTime(2005, 2, 22), "2234567890123"));
+            BookCopies.Add(new BookCopy(book1, new DateTime(2012, 2, 1), "3234567890123"));
+            BookCopies.Add(new BookCopy(book2, new DateTime(1999, 1, 13), "4234567890123"));
+            BookCopies.Add(new BookCopy(book3, new DateTime(2003, 5, 27), "5234567890123"));
 
             BookEvents = new List<BookEvent>();
             BookEvents.Add(new Rent(BookCopies[0], Readers[2], new DateTime(2020, 4, 4)));

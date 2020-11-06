@@ -17,8 +17,20 @@ namespace Automatic_Library.Data.ObjectModel.BookEvent
             this.EventTime = bookEventTime;
         }
 
-    
+        public override bool Equals(object obj)
+        {
+            if ((obj == null) || !this.GetType().Equals(obj.GetType()))
+            {
+                return false;
+            }
 
-
+            var tmp = (BookEvent)obj;
+            
+            if(tmp.BookCopy.Equals(this.BookCopy) && tmp.Reader.Equals(this.Reader) && tmp.EventTime.Equals(this.EventTime))
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

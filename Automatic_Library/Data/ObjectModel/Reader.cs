@@ -13,5 +13,20 @@ namespace Automatic_Library.Data.ObjectModel
             this.LastName = lastName;
         }
 
+        public override bool Equals(object obj)
+        {
+            if ((obj == null) || !this.GetType().Equals(obj.GetType()))
+            {
+                return false;
+            }
+
+            var tmp = (Reader)obj;
+                
+            if(tmp.Name == this.Name && tmp.LastName == this.LastName)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }
