@@ -157,7 +157,25 @@ namespace LibraryTest
 
         [TestMethod]
         public void DeleteReaderConsistencyTest()
-        { 
+        {
+            Assert.AreEqual(repository.GetAllReaders().Count(), 4);
+            repository.DeleteReader(repository.GetReader(3));
+            Assert.AreEqual(repository.GetAllReaders().Count(), 4);
+            Reader tmp = new Reader("Krzysztof", "Gonciarz");
+            repository.AddReader(tmp);
+            Assert.AreEqual(repository.GetAllReaders().Count(), 5);
+            repository.DeleteReader(tmp);
+            Assert.AreEqual(repository.GetAllReaders().Count(), 4);
         }
+
+  
+        [TestMethod]
+        public void DeleteBookEventConsistencyTest()
+        {
+            Assert.AreEqual(repository.GetAllBookEvents().Count(), 7);
+            repository.DeleteBookEvent(repository.GetBookEvent(0));
+            Assert.AreEqual(repository.GetAllBookEvents().Count(), 6);
+        }
+
     }
 }
