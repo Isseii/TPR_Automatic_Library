@@ -10,9 +10,9 @@ namespace Automatic_Library.Data.ObjectModel
 
         public BookDescription(string title, string author, string publisher)
         {
-            this.Title = title;
-            this.Author = author;
-            this.Publisher = publisher;
+            this.Title = title ?? throw new ArgumentNullException();
+            this.Author = author ?? throw new ArgumentNullException();
+            this.Publisher = publisher ?? throw new ArgumentNullException();
         }
 
         public override bool Equals(object obj)

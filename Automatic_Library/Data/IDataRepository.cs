@@ -34,7 +34,7 @@ namespace Automatic_Library.Data
         void AddBookEvent(BookEvent bookEvent);
         BookEvent GetBookEvent(int i);
         IEnumerable<BookEvent> GetAllBookEvents();
-        void DeleteBookEvent( BookEvent bookEvent);
+        void DeleteBookEvent(BookEvent bookEvent);
     }
 
 }

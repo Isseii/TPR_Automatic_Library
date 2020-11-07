@@ -12,8 +12,8 @@ namespace Automatic_Library.Data.ObjectModel.BookEvent
 
         protected BookEvent(BookCopy bookCopy, Reader reader, DateTime bookEventTime)
         {
-            this.BookCopy = bookCopy;
-            this.Reader = reader;
+            this.BookCopy = bookCopy ?? throw new ArgumentNullException();
+            this.Reader = reader ?? throw new ArgumentNullException();
             this.EventTime = bookEventTime;
         }
 

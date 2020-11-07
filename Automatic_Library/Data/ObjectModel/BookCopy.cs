@@ -17,8 +17,8 @@ namespace Automatic_Library.Data.ObjectModel
 
         public BookCopy(BookDescription book, DateTime purchaseDate, String isbn)
         {
-            this.Isbn = isbn;
-            this.Book = book;
+            this.Isbn = isbn ?? throw new ArgumentNullException();
+            this.Book = book ?? throw new ArgumentNullException();
             this.PurchaseDate = purchaseDate;
             this.State = Availability.Available;
         }

@@ -55,9 +55,13 @@ namespace LibraryTest
         }
 
         [TestMethod]
-        public void DeleteMethodsTest()
+        public void AddBookCopyConsistencyTest()
         {
-            
+            var bookDescription = new BookDescription("The Witcher", "Sapko", "JDPublish");
+            var bookCopy = new BookCopy(bookDescription, new DateTime(1999, 13, 13), "3232646894322");
+            Assert.AreEqual(repository.GetAllBookDescriptions().Count(), 4);
+            repository.AddBookCopy(bookCopy);
+            Assert.AreEqual(repository.GetAllBookDescriptions().Count(), 5);
         }
     }
 }

@@ -18,6 +18,11 @@ namespace Automatic_Library.Data
         public override void AddBookCopy(BookCopy bookCopy)
         {
             var x = bookCopy ?? throw new ArgumentNullException();
+            try
+            {
+                this.AddBookDescription(x.Book);
+            } catch (ArgumentException) {};
+
             if(_dataContext.BookCopies.Find(y => y.Equals(x)) == null)
             {
                 _dataContext.BookCopies.Add(x);
@@ -47,8 +52,24 @@ namespace Automatic_Library.Data
             var y = bookEvent ?? throw new ArgumentNullException();
             if (_dataContext.BookEvents.Where(x => x.Equals(y)).Count() == 0)
             {
-                _dataContext.BookEvents.Add(y);
+                if (y is Rent)
+                {
+                    rentOperation(y as Rent);
+                } else if(y is Return)
+                {
+                    returnOperation(y as Return);
+                }
             }
+        }
+
+        private void rentOperation(Rent bookRent)
+        {
+            _dataContext.BookEvents.Add(bookRent);
+        }
+
+        private void returnOperation(Return bookReturn)
+        {
+            _dataContext.BookEvents.Add(bookReturn);
         }
 
         public override void DeleteBookCopy(BookCopy bookCopy)

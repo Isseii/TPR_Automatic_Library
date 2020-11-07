@@ -9,8 +9,8 @@ namespace Automatic_Library.Data.ObjectModel
 
         public Reader(string name, string lastName)
         {
-            this.Name = name;
-            this.LastName = lastName;
+            this.Name = name ?? throw new ArgumentNullException();
+            this.LastName = lastName ?? throw new ArgumentNullException();
         }
 
         public override bool Equals(object obj)
