@@ -64,28 +64,72 @@ namespace Automatic_Library.Data
 
         private void rentOperation(Rent bookRent)
         {
+            if(_dataContext.BookCopies.Where(x => x.Equals(bookRent.BookCopy)).Count() == 0)
+            {
+                return;
+            }
+            if (bookRent.BookCopy.State != BookCopy.Availability.Available)
+            {
+                return;
+            }
+            bookRent.BookCopy.State = BookCopy.Availability.Unavailable;
             _dataContext.BookEvents.Add(bookRent);
         }
 
         private void returnOperation(Return bookReturn)
-        {
+        {   
+            if (_dataContext.BookCopies.Where(x => x.Equals(bookReturn.BookCopy)).Count() == 0)
+            {
+                AddBookCopy(bookReturn.BookCopy);
+                bookReturn.BookCopy.State = BookCopy.Availability.Unavailable;
+            }
+            if (bookReturn.BookCopy.State != BookCopy.Availability.Unavailable)
+            {
+                return;
+            }
+            bookReturn.BookCopy.State = BookCopy.Availability.Available;
             _dataContext.BookEvents.Add(bookReturn);
         }
 
         public override void DeleteBookCopy(BookCopy bookCopy)
         {
-            _dataContext.BookCopies.Remove(bookCopy ?? throw new ArgumentNullException());
+            var y = bookCopy ?? throw new ArgumentNullException();
+            foreach (BookEvent x in _dataContext.BookEvents)
+            {
+                if (x.BookCopy.Equals(y))
+                {
+                    return;
+                }
+            }
+            _dataContext.BookCopies.Remove(y);
         }
+
+
 
         public override void DeleteBookDescription(BookDescription bookDescription)
         {
-            var x = bookDescription ?? throw new ArgumentNullException();
-            _dataContext.BookDescriptions.Remove(x.Title);
+            var y = bookDescription ?? throw new ArgumentNullException();
+            foreach (BookCopy x in _dataContext.BookCopies)
+            {
+                if (x.Book.Equals(y))
+                {
+                    return;
+                }
+            }
+            _dataContext.BookDescriptions.Remove(y.Title);
         }
 
         public override void DeleteReader(Reader reader)
         {
-            _dataContext.Readers.Remove(reader ?? throw new ArgumentNullException());
+            var y = reader ?? throw new ArgumentNullException();
+            foreach (BookEvent x in _dataContext.BookEvents)
+            {
+                if (x.Reader.Equals(y))
+                {
+                    return;
+                }
+            }
+            _dataContext.Readers.Remove(y);
         }
 
         public override void DeleteBookEvent(BookEvent bookEvent)
