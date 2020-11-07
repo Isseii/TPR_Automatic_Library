@@ -9,7 +9,7 @@ namespace Automatic_Library.Data
     {
         void AddBookDescription(BookDescription bookDescription);
         BookDescription GetBookDescription(string title);
-        IEnumerable<BookDescription> GetAllBookDescriptions();
+        IEnumerable<KeyValuePair<string, BookDescription>> GetAllBookDescriptions();
         void DeleteBookDescription(BookDescription bookDescription);
     }
 

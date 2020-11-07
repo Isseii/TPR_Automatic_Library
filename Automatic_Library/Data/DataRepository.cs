@@ -17,42 +17,59 @@ namespace Automatic_Library.Data
 
         public override void AddBookCopy( BookCopy bookCopy)
         {
-            _dataContext.BookCopies.Add(bookCopy);
+            var x = bookCopy ?? throw new ArgumentNullException();
+            if(_dataContext.BookCopies.Find(y => y.Equals(x)) == null)
+            {
+                _dataContext.BookCopies.Add(x);
+            }
         }
 
         public override void AddBookDescription( BookDescription bookDescription)
         {
-            _dataContext.BookDescriptions.Add(bookDescription.Title, bookDescription);
+            var x = bookDescription ?? throw new ArgumentNullException();
+           if (_dataContext.BookDescriptions.Where(y => y.Equals(x)).Count() == 0 )
+             {
+                _dataContext.BookDescriptions.Add(x.Title, x);
+            }
         }
 
         public override void AddReader( Reader reader)
         {
-            _dataContext.Readers.Add(reader);
+            var y = reader ?? throw new ArgumentNullException();
+            if (_dataContext.Readers.Find(x => x.Equals(y)) == null)
+            {
+                _dataContext.Readers.Add(y);
+            }
         }
 
         public override void AddBookEvent( BookEvent bookEvent)
         {
-            _dataContext.BookEvents.Add(bookEvent);
+            var y = bookEvent ?? throw new ArgumentNullException();
+            if (_dataContext.BookEvents.Where(x => x.Equals(y)).Count() == 0)
+            {
+                _dataContext.BookEvents.Add(y);
+            }
         }
 
         public override void DeleteBookCopy( BookCopy bookCopy)
         {
-            _dataContext.BookCopies.Remove(bookCopy);
+            _dataContext.BookCopies.Remove(bookCopy ?? throw new ArgumentNullException());
         }
 
         public override void DeleteBookDescription( BookDescription bookDescription)
         {
-            _dataContext.BookDescriptions.Remove(bookDescription.Title);
+            var x = bookDescription ?? throw new ArgumentNullException();
+            _dataContext.BookDescriptions.Remove(x.Title);
         }
 
         public override void DeleteReader( Reader reader)
         {
-            _dataContext.Readers.Remove(reader);
+            _dataContext.Readers.Remove(reader ?? throw new ArgumentNullException());
         }
 
         public override void DeleteBookEvent( BookEvent bookEvent)
         {
-            _dataContext.BookEvents.Remove(bookEvent);
+            _dataContext.BookEvents.Remove(bookEvent ?? throw new ArgumentNullException());
         }
 
         public override IEnumerable<BookCopy> GetAllBookCopies()
@@ -60,9 +77,9 @@ namespace Automatic_Library.Data
             return _dataContext.BookCopies;
         }
 
-        public override IEnumerable<BookDescription> GetAllBookDescriptions()
+        public override IEnumerable<KeyValuePair<string, BookDescription>> GetAllBookDescriptions()
         {
-            return (IEnumerable<BookDescription>)_dataContext.BookDescriptions;
+            return _dataContext.BookDescriptions;
         }
 
         public override IEnumerable<Reader> GetAllReaders()

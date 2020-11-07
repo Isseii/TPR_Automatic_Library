@@ -13,7 +13,7 @@ namespace Automatic_Library.Logic
         
         IEnumerable<BookDescription> AllBookDescriptions()
         {
-            return _dataRepository.GetAllBookDescriptions();
+            throw new NotImplementedException();
         }
 
         IEnumerable<BookEvent> ReaderBookEvents(Reader reader)

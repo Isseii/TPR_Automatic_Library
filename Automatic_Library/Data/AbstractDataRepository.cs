@@ -15,7 +15,7 @@ namespace Automatic_Library.Data
         public abstract void DeleteReader( Reader reader);
         public abstract void DeleteBookEvent( BookEvent bookEvent);
         public abstract IEnumerable<BookCopy> GetAllBookCopies();
-        public abstract IEnumerable<BookDescription> GetAllBookDescriptions();
+        public abstract IEnumerable<KeyValuePair<string, BookDescription>> GetAllBookDescriptions();
         public abstract IEnumerable<Reader> GetAllReaders();
         public abstract IEnumerable<BookEvent> GetAllBookEvents();
         public abstract BookCopy GetBookCopy(int i);

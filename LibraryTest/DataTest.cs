@@ -14,7 +14,6 @@ namespace LibraryTest
         [TestMethod]
         public void DataPopulatorTest()
         {
-            DataContext dataContext = new DataContext();
             AbstractDataRepository repository = new DataRepository();
             Populator populator = new Populator();
             DataPopulator dataPopulator = new DataPopulator(repository,populator);

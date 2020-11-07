@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataHolder.cs" />
+    <Compile Include="DataRepositoryTests.cs" />
     <Compile Include="DataTest.cs" />
     <Compile Include="Populator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
