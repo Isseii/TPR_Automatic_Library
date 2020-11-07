@@ -11,15 +11,20 @@ namespace LibraryTest
     [TestClass]
     public class DataRepositoryTests
     {
-        [TestMethod]
-        public void AddRemoveRepositoryTest()
+        AbstractDataRepository repository;
+
+        [TestInitialize]
+        public void SetUp()
         {
-            AbstractDataRepository repository = new DataRepository();
+            repository = new DataRepository();
             Populator populator = new Populator();
             DataPopulator dataPopulator = new DataPopulator(repository, populator);
             dataPopulator.populate();
+        }
 
-
+        [TestMethod]
+        public void AddTheSameObjectTest()
+        {
             Reader reader = new Reader("Dominik", "Karski");
             Assert.AreEqual(repository.GetAllReaders().Count(), 4);
             repository.AddReader(reader);
@@ -40,6 +45,19 @@ namespace LibraryTest
             count = repository.GetAllBookDescriptions().Count();
             Assert.AreNotEqual(count, 5);
 
+            Assert.AreEqual(repository.GetAllBookCopies().Count(), 5);
+            repository.AddBookCopy(repository.GetBookCopy(0));
+            Assert.AreEqual(repository.GetAllBookCopies().Count(), 5);
+
+            Assert.AreEqual(repository.GetAllBookEvents().Count(), 7);
+            repository.AddBookEvent(repository.GetBookEvent(0));
+            Assert.AreEqual(repository.GetAllBookEvents().Count(), 7);
+        }
+
+        [TestMethod]
+        public void DeleteMethodsTest()
+        {
+            
         }
     }
 }
