@@ -31,6 +31,8 @@ namespace Automatic_Library.Data.DataPopulator
             BookDescriptions.Add(book2);
             var book3 = new BookDescription("Pan Lodowego Ogrodu (tom 1)", "Jarosław Grzędowicz", "Fabryka Słów");
             BookDescriptions.Add(book3);
+            var book4 = new BookDescription("Pan Lodowego Ogrodu (tom 2)", "Jarosław Grzędowicz", "Fabryka Słów");
+            BookDescriptions.Add(book4);
 
             BookCopies = new List<BookCopy>();
             BookCopies.Add(new BookCopy(book, new DateTime(2015, 5, 23),"1234567890123"));

@@ -15,14 +15,14 @@ namespace Automatic_Library.Data.DataPopulator
 
          public void populate()
         {
-            foreach (var bookCopy in _populateData.GetBookCopies())
-            {
-                _dataRepository.AddBookCopy(bookCopy);
-            }
-
             foreach (var bookDescription in _populateData.GetBookDescriptions())
             {
                 _dataRepository.AddBookDescription(bookDescription);
+            }
+
+            foreach (var bookCopy in _populateData.GetBookCopies())
+            {
+                _dataRepository.AddBookCopy(bookCopy);
             }
 
             foreach (var reader in _populateData.GetReaders())

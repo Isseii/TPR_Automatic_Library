@@ -32,7 +32,7 @@ namespace Automatic_Library.Data
         public override void AddBookDescription(BookDescription bookDescription)
         {
             var x = bookDescription ?? throw new ArgumentNullException();
-           if (_dataContext.BookDescriptions.Where(y => y.Equals(x)).Count() == 0 )
+           if (_dataContext.BookDescriptions.Where(y => x.Equals(y.Value)).Count() == 0)
              {
                 _dataContext.BookDescriptions.Add(x.Title, x);
             }
@@ -103,8 +103,6 @@ namespace Automatic_Library.Data
             }
             _dataContext.BookCopies.Remove(y);
         }
-
-
 
         public override void DeleteBookDescription(BookDescription bookDescription)
         {

@@ -16,7 +16,7 @@ namespace LibraryTest
         {
             AbstractDataRepository repository = new DataRepository();
             Populator populator = new Populator();
-            DataPopulator dataPopulator = new DataPopulator(repository,populator);
+            DataPopulator dataPopulator = new DataPopulator(repository, populator);
             dataPopulator.populate();
 
             Assert.AreEqual(repository.GetReader(0), new Reader("Dominik", "Karski"));
