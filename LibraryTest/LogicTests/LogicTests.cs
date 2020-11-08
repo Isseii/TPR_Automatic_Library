@@ -4,11 +4,10 @@ using Automatic_Library.Data;
 using LibraryTest.DataFiller;
 using Automatic_Library.Data.DataPopulator;
 using Automatic_Library.Logic;
-using Automatic_Library.Data.ObjectModel;
-using Automatic_Library.Data.ObjectModel;
 using Automatic_Library.Data.ObjectModel.BookEvent;
 using System.Collections.Generic;
 using System.Linq;
+using Automatic_Library.Data.ObjectModel;
 
 namespace LibraryTest.LogicTests
 {
@@ -115,54 +114,79 @@ namespace LibraryTest.LogicTests
             List<BookEvent> dataEvents = new List<BookEvent>();
             List<BookEvent> serviceEvents = new List<BookEvent>();
 
-            dataEvents = data.BookEvents.Where(y => y.Equals(x)).ToList<BookEvent>() ;
-            serviceEvents = dataService.ReaderBookEvents(x.Name, x.LastName).ToList<BookEvent>();
+            dataEvents = data.BookEvents.Where(y => y.Equals(x)).ToList() ;
+            serviceEvents = dataService.ReaderBookEvents(x.Name, x.LastName).ToList();
 
-            for (int i = 0; i < dataEvents.Count(); i++) 
-            {
-                Assert.AreEqual(dataEvents[i], serviceEvents[i]);
-            }
+            CollectionAssert.AreEquivalent(dataEvents, serviceEvents);
         }
 
         [TestMethod()]
         public void BookEventsBetweenDatesTest()
         {
-            throw new NotImplementedException();
+            var dateStart = new DateTime();
+            var dateEnd = new DateTime();
+            var collection1 = dataService.BookEventsBetweenDates(dateStart, dateEnd).ToList();
+            var collection2 = data.BookEvents.Where(x => x.EventTime >= dateStart && x.EventTime <= dateEnd).ToList();
+
+            CollectionAssert.AreEquivalent(collection1, collection2);
         }
 
         [TestMethod()]
         public void AddBookCopyTest()
         {
-            throw new NotImplementedException();
+            var counter = dataService.GetAllBookCopies().Count();
+            dataService.AddBookCopy("Mein Kampf", "Adolf Hitler", "Verlag Franz Eher Nachfolger", "133213723121");
+            Assert.AreEqual(counter + 1, dataService.GetAllBookCopies().Count());
         }
 
         [TestMethod()]
         public void AddBookDescriptionTest()
         {
-            throw new NotImplementedException();
+            var counter = dataService.GetAllBookDescriptions().Count();
+            dataService.AddBookDescription("Kamień","Adam Nie","Wiadomo");
+            Assert.AreEqual(counter + 1, dataService.GetAllBookDescriptions().Count());
         }
 
         [TestMethod()]
         public void RentBookTest()
         {
-            throw new NotImplementedException();
+            Reader reader = dataService.GetAllReaders().First();
+            BookCopy bookCopy = dataService.GetAllBookCopies().First();
+            Assert.AreEqual(bookCopy.State, BookCopy.Availability.Available);
+
+            var counter = dataService.GetAllBookEvents().Count();
+
+            dataService.RentBook(reader, bookCopy);
+            Assert.AreEqual(bookCopy.State, BookCopy.Availability.Unavailable);
+            Assert.AreEqual(counter + 1, dataService.GetAllBookEvents().Count());
         }
 
         [TestMethod()]
         public void ReturnBookTest()
         {
-            throw new NotImplementedException();
+            Reader reader = dataService.GetAllReaders().First();
+            BookCopy bookCopy = dataService.GetAllBookCopies().Last();
+            Assert.AreEqual(bookCopy.State, BookCopy.Availability.Unavailable);
+
+            var counter = dataService.GetAllBookEvents().Count();
+
+            dataService.ReturnBook(reader, bookCopy);
+            Assert.AreEqual(bookCopy.State, BookCopy.Availability.Available);
+            Assert.AreEqual(counter + 1, dataService.GetAllBookEvents().Count());
         }
 
         [TestMethod()]
         public void AddReaderTest()
         {
-            throw new NotImplementedException();
+            var counter = dataService.GetAllReaders().Count();
+            dataService.AddReader("Kamil", "Putout");
+            Assert.AreEqual(counter + 1, dataService.GetAllReaders().Count());
         }
 
         [TestMethod()]
         public void DeleteBookCopyTest()
         {
+
             throw new NotImplementedException();
         }
 
