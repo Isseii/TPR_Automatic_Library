@@ -28,7 +28,7 @@ namespace LibraryTest.DataFiller
             generateRandomReaders();
             generateRandomBookDescriptions();
             generateRandomBookCopies();
-           //generateRandomBookEvents();
+            generateRandomBookEvents();
             
    
         }
@@ -96,6 +96,24 @@ namespace LibraryTest.DataFiller
             while (BookCopies.Count() < 10)
             {
                 index1 = rnd.Next(0, BookDescriptions.Count());
+                string isbn = randomIsbn();
+
+                bool unique = false;
+
+                while (!unique) {
+                    isbn = randomIsbn();
+                    foreach (var item in BookCopies)
+                    {
+                        if (isbn == item.Isbn)
+                        {
+                            unique = false;
+                            continue;
+                        }
+                        unique = true;
+                    }
+                    unique = true;
+                }
+
                 BookCopies.Add(new BookCopy(BookDescriptions[index1], DateTime.Now, randomIsbn()));
 
             }
@@ -104,7 +122,37 @@ namespace LibraryTest.DataFiller
 
         private void generateRandomBookEvents()
         {
-            throw new NotImplementedException();
+            int book1 = 0;
+            int book2 = 0;
+            int book3 = 0;
+            int book4 = 0;
+
+            bool unique = false;
+            while (!unique) 
+            {
+                book1 = rnd.Next(0, BookCopies.Count());
+                book2 = rnd.Next(0, BookCopies.Count());
+                book3 = rnd.Next(0, BookCopies.Count());
+                book4 = rnd.Next(0, BookCopies.Count());
+                if (book1 == book2 || book1 == book3 || book1 == book4 || book2 == book3 || book3 == book4 || book2 == book4)
+                {
+                    unique = false;
+                }
+                else
+                {
+                    unique = true;
+                }
+            }
+
+            int book2Reader = rnd.Next(0, Readers.Count());
+            int book3Reader = rnd.Next(0, Readers.Count());
+
+            BookEvents.Add(new Rent(BookCopies[book1], Readers[rnd.Next(0, Readers.Count())], new DateTime(2020, 1, 20)));
+            BookEvents.Add(new Rent(BookCopies[book2], Readers[book2Reader], new DateTime(2020, 2, 13)));
+            BookEvents.Add(new Rent(BookCopies[book3], Readers[book3Reader], new DateTime(2020, 4, 1)));
+            BookEvents.Add(new Return(BookCopies[book2], Readers[book2Reader], new DateTime(2020, 5, 2)));
+            BookEvents.Add(new Rent(BookCopies[book4], Readers[rnd.Next(0, Readers.Count())], new DateTime(2020, 7, 3)));
+            BookEvents.Add(new Return(BookCopies[book3], Readers[book3Reader], new DateTime(2020, 12, 4)));
         }
 
         private string randomIsbn()

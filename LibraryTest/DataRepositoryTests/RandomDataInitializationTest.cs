@@ -14,17 +14,33 @@ namespace LibraryTest.DataRepositoryTests
     [TestClass]
     public class RandomDataInitializationTest
     {
-        [TestMethod]
-        public void DataPopulatorTest()
+        private AbstractDataRepository repository;
+
+        [TestInitialize()]
+        public void SetUp()
         {
-            AbstractDataRepository repository = new DataRepository();
+            repository = new DataRepository();
             RandomPopulator populator = new RandomPopulator();
             DataPopulator dataPopulator = new DataPopulator(repository, populator);
             dataPopulator.populate();
+        }
 
-            Assert.AreEqual(repository.GetAllReaders().Count(),6);
+        [TestMethod]
+        public void RandomDataPopulatorTest()
+        {
+            Assert.AreEqual(repository.GetAllReaders().Count(), 6);
             Assert.AreEqual(repository.GetAllBookDescriptions().Count(), 6);
             Assert.AreEqual(repository.GetAllBookCopies().Count(), 10);
+            Assert.AreEqual(repository.GetAllBookEvents().Count(), 6);
+
+        }
+
+        [TestMethod]
+        public void RandomDataTest()
+        {
+            RandomDataHolder dataHolder = new RandomDataHolder();
+            CollectionAssert.AreNotEquivalent(repository.GetAllBookCopies().ToList(), dataHolder.BookCopies);
+
         }
     }
 }
