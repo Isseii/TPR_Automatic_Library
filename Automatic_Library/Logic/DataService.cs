@@ -9,7 +9,13 @@ namespace Automatic_Library.Logic
 {
     public class DataService : IDataService
     {
+
         private AbstractDataRepository _dataRepository;
+
+        public DataService(AbstractDataRepository dataRepository)
+        {
+            _dataRepository = dataRepository;
+        }
 
         public IEnumerable<KeyValuePair<string, BookDescription>> GetAllBookDescriptions()
         {
@@ -33,7 +39,8 @@ namespace Automatic_Library.Logic
 
         public bool isBookDescriptionInDataRepository(BookDescription bookDescription)
         {
-            return GetAllBookDescriptions().Where(x => x.Equals(bookDescription)).Count() != 0;
+            var tmp = GetAllBookDescriptions().Where(x => x.Value.Equals(bookDescription)).Count() != 0;
+            return tmp;
         }
 
         public bool isBookEventInDataRepository(BookEvent bookEvent)

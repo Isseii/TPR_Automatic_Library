@@ -3,74 +3,125 @@ using System;
 using Automatic_Library.Data;
 using LibraryTest.DataFiller;
 using Automatic_Library.Data.DataPopulator;
+using Automatic_Library.Logic;
+using Automatic_Library.Data.ObjectModel;
+using Automatic_Library.Data.ObjectModel;
+using Automatic_Library.Data.ObjectModel.BookEvent;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace LibraryTest.LogicTests
 {
     [TestClass()]
     public class LogicTests
     {
-        AbstractDataRepository repository;
+        IDataService dataService;
+        DataHolder data = new DataHolder();
+
         [TestInitialize()]
         public void SetUp()
         {
-            repository = new DataRepository();
+            var repository = new DataRepository();
             Populator populator = new Populator();
             DataPopulator dataPopulator = new DataPopulator(repository, populator);
             dataPopulator.populate();
+            dataService = new DataService(repository);
         }
 
         [TestMethod()]
         public void GetAllBookDescriptionsTest()
         {
-            throw new NotImplementedException();
+            int i = 0;
+            foreach ( var bookDescription in dataService.GetAllBookDescriptions())
+            {
+                Assert.AreEqual(bookDescription.Value, data.BookDescriptions[i]);
+                i++;
+            }
         }
 
         [TestMethod()]
         public void GetAllBookEventsTest()
         {
-            throw new NotImplementedException();
+            int i = 0;
+            foreach (var item in dataService.GetAllBookEvents())
+            {
+                Assert.AreEqual(item, data.BookEvents[i]);
+                i++;
+            }
         }
 
         [TestMethod()]
         public void GetAllBookCopiesTest()
         {
-            throw new NotImplementedException();
+            int i = 0;
+            foreach (var item in dataService.GetAllBookCopies())
+            {
+                Assert.AreEqual(item, data.BookCopies[i]);
+                i++;
+            }
         }
 
         [TestMethod()]
         public void GetAllReadersTest()
         {
-            throw new NotImplementedException();
+            int i = 0;
+            foreach (var item in dataService.GetAllReaders())
+            {
+                Assert.AreEqual(item, data.Readers[i]);
+                i++;
+            }
         }
 
         [TestMethod()]
         public void isBookDescriptionInDataRepositoryTest()
         {
-            throw new NotImplementedException();
+            foreach (var item in data.BookDescriptions )
+            {
+                Assert.IsTrue(dataService.isBookDescriptionInDataRepository(item));
+            }
         }
 
         [TestMethod()]
         public void isBookEventInDataRepositoryTest()
         {
-            throw new NotImplementedException();
+            foreach (var item in data.BookEvents )
+            {
+                Assert.IsTrue(dataService.isBookEventInDataRepository(item));
+            }
         }
 
         [TestMethod()]
         public void isBookCopyInDataRepositoryTest()
         {
-            throw new NotImplementedException();
+            foreach (var item in data.BookCopies)
+            {
+                Assert.IsTrue(dataService.isBookCopyInDataRepository(item));
+            }
         }
 
         [TestMethod()]
         public void isReaderInDataRepositoryTest()
         {
-            throw new NotImplementedException();
+            foreach (var item in data.Readers)
+            {
+                Assert.IsTrue(dataService.isReaderInDataRepository(item.Name, item.LastName));
+            }
         }
 
         [TestMethod()]
         public void ReaderBookEventsTest()
         {
-            throw new NotImplementedException();
+            var x = data.Readers[0];
+            List<BookEvent> dataEvents = new List<BookEvent>();
+            List<BookEvent> serviceEvents = new List<BookEvent>();
+
+            dataEvents = data.BookEvents.Where(y => y.Equals(x)).ToList<BookEvent>() ;
+            serviceEvents = dataService.ReaderBookEvents(x.Name, x.LastName).ToList<BookEvent>();
+
+            for (int i = 0; i < dataEvents.Count(); i++) 
+            {
+                Assert.AreEqual(dataEvents[i], serviceEvents[i]);
+            }
         }
 
         [TestMethod()]
