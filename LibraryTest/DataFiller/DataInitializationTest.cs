@@ -5,11 +5,10 @@ using Automatic_Library.Data.ObjectModel;
 using Automatic_Library.Data.ObjectModel.BookEvent;
 using System;
 
-
-namespace LibraryTest
+namespace LibraryTest.DataFiller
 {
     [TestClass]
-    public class DataTest
+    public class DataInitializationTest
     {
         [TestMethod]
         public void DataPopulatorTest()

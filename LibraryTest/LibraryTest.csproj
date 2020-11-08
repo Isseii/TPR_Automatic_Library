@@ -53,12 +53,12 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataHolder.cs" />
-    <Compile Include="DataRepositoryTests.cs" />
-    <Compile Include="DataTest.cs" />
-    <Compile Include="Populator.cs" />
+    <Compile Include="DataFiller\DataHolder.cs" />
+    <Compile Include="DataRepositoryTests\DataRepositoryTests.cs" />
+    <Compile Include="DataFiller\DataInitializationTest.cs" />
+    <Compile Include="DataFiller\Populator.cs" />
+    <Compile Include="LogicTests\LogicTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="LogicTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -6,8 +6,9 @@ using Automatic_Library.Data.DataPopulator;
 using Automatic_Library.Data.ObjectModel;
 using System.Linq;
 using Automatic_Library.Data.ObjectModel.BookEvent;
+using LibraryTest.DataFiller;
 
-namespace LibraryTest
+namespace LibraryTest.DataRepositoryTests
 {
     [TestClass]
     public class DataRepositoryTests

@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Automatic_Library.Data.ObjectModel;
 using Automatic_Library.Data.ObjectModel.BookEvent;
+using Automatic_Library.Data.DataPopulator;
 
-namespace Automatic_Library.Data.DataPopulator
+
+namespace LibraryTest.DataFiller
 {
     class Populator : IPopulateData
     {

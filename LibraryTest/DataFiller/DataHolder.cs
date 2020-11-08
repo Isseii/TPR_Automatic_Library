@@ -5,7 +5,7 @@ using System.Net;
 using Automatic_Library.Data.ObjectModel;
 using Automatic_Library.Data.ObjectModel.BookEvent;
 
-namespace Automatic_Library.Data.DataPopulator
+namespace LibraryTest.DataFiller
 {
     class DataHolder
     {
