@@ -6,13 +6,13 @@ using Automatic_Library.Data.DataPopulator;
 
 namespace LibraryTest.DataFiller
 {
-    class Populator : IPopulateData
+    class ConstPopulator : IPopulateData
     {
-        private DataHolder data;
+        private ConstDataHolder data;
 
-        public Populator()
+        public ConstPopulator()
         {
-            data = new DataHolder();
+            data = new ConstDataHolder();
         }
 
         public IEnumerable<BookEvent> GetBookEvents()

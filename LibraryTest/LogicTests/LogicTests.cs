@@ -15,13 +15,13 @@ namespace LibraryTest.LogicTests
     public class LogicTests
     {
         IDataService dataService;
-        DataHolder data = new DataHolder();
+        ConstDataHolder data = new ConstDataHolder();
 
         [TestInitialize()]
         public void SetUp()
         {
             var repository = new DataRepository();
-            Populator populator = new Populator();
+            ConstPopulator populator = new ConstPopulator();
             DataPopulator dataPopulator = new DataPopulator(repository, populator);
             dataPopulator.populate();
             dataService = new DataService(repository);

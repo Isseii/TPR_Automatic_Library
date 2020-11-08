@@ -4,17 +4,19 @@ using Automatic_Library.Data.DataPopulator;
 using Automatic_Library.Data.ObjectModel;
 using Automatic_Library.Data.ObjectModel.BookEvent;
 using System;
+using LibraryTest.DataFiller;
 
-namespace LibraryTest.DataFiller
+namespace LibraryTest.DataRepositoryTests
+
 {
     [TestClass]
-    public class DataInitializationTest
+    public class ConstDataInitializationTest
     {
         [TestMethod]
         public void DataPopulatorTest()
         {
             AbstractDataRepository repository = new DataRepository();
-            Populator populator = new Populator();
+            ConstPopulator populator = new ConstPopulator();
             DataPopulator dataPopulator = new DataPopulator(repository, populator);
             dataPopulator.populate();
 

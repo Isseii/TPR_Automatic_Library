@@ -7,14 +7,14 @@ using Automatic_Library.Data.ObjectModel.BookEvent;
 
 namespace LibraryTest.DataFiller
 {
-    class DataHolder
+    class ConstDataHolder
     {
         public List<Reader> Readers;
         public List<BookDescription> BookDescriptions;
         public List<BookEvent> BookEvents;
         public List<BookCopy> BookCopies;
 
-        public DataHolder() 
+        public ConstDataHolder() 
         {
             Readers = new List<Reader>();
             Readers.Add(new Reader("Dominik", "Karski"));

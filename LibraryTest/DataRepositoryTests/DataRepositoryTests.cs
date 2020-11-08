@@ -19,7 +19,7 @@ namespace LibraryTest.DataRepositoryTests
         public void SetUp()
         {
             repository = new DataRepository();
-            Populator populator = new Populator();
+            ConstPopulator populator = new ConstPopulator();
             DataPopulator dataPopulator = new DataPopulator(repository, populator);
             dataPopulator.populate();
         }
@@ -58,9 +58,10 @@ namespace LibraryTest.DataRepositoryTests
         {
             var bookDescription = new BookDescription("The Witcher", "Sapko", "JDPublish");
             var bookCopy = new BookCopy(bookDescription, new DateTime(1999, 12, 13), "3232646894322");
-            Assert.AreEqual(repository.GetAllBookDescriptions().Count(), 5);
+            var counter = repository.GetAllBookDescriptions().Count();
+            Assert.AreEqual(repository.GetAllBookDescriptions().Count(), counter);
             repository.AddBookCopy(bookCopy);
-            Assert.AreEqual(repository.GetAllBookDescriptions().Count(), 6);
+            Assert.AreEqual(repository.GetAllBookDescriptions().Count(), counter + 1);
         }
 
         [TestMethod]
