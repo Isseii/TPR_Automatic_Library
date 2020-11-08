@@ -32,7 +32,7 @@ namespace Automatic_Library.Data.ObjectModel
             var tmp = (BookCopy)obj;
 
 
-            if (tmp.Isbn == this.Isbn){
+            if (tmp.Isbn.Equals(this.Isbn)){
                 return true;
             }
 

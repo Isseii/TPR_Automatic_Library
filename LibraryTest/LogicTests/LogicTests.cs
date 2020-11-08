@@ -186,26 +186,52 @@ namespace LibraryTest.LogicTests
         [TestMethod()]
         public void DeleteBookCopyTest()
         {
+            dataService.AddBookCopy("Ka", "Ku Ku", "LegitBook Publisher sp. z.o.o", "133313726921");
+            var counter = dataService.GetAllBookCopies().Count();
+            dataService.DeleteBookCopy("133313726921");
+            Assert.AreEqual(counter - 1, dataService.GetAllBookCopies().Count());
 
-            throw new NotImplementedException();
+            var bookCopy = dataService.GetAllBookCopies().First();
+            counter = dataService.GetAllBookCopies().Count();
+            dataService.DeleteBookCopy(bookCopy.Isbn);
+            Assert.AreEqual(counter, dataService.GetAllBookCopies().Count());
         }
 
         [TestMethod()]
         public void DeleteBookDescriptionTest()
         {
-            throw new NotImplementedException();
+            dataService.AddBookDescription("Władca Pierścienia", "Tolken", "JDPublish");
+            var counter = dataService.GetAllBookDescriptions().Count();
+            dataService.DeleteBookDescription("Władca Pierścienia");
+            Assert.AreEqual(counter - 1, dataService.GetAllBookDescriptions().Count());
+
+            var bookDescription = dataService.GetAllBookCopies().First().Book;
+            counter = dataService.GetAllBookDescriptions().Count();
+            dataService.DeleteBookDescription(bookDescription.Title);
+            Assert.AreEqual(counter, dataService.GetAllBookDescriptions().Count());
         }
 
         [TestMethod()]
         public void DeleteReaderTest()
         {
-            throw new NotImplementedException();
+            dataService.AddReader("Reader", "Floyd");
+            var counter = dataService.GetAllReaders().Count();
+            dataService.DeleteReader("Reader", "Floyd");
+            Assert.AreEqual(counter - 1, dataService.GetAllReaders().Count());
+
+            var reader = dataService.GetAllBookEvents().First().Reader;
+            counter = dataService.GetAllReaders().Count();
+            dataService.DeleteReader(reader.Name, reader.LastName);
+            Assert.AreEqual(counter, dataService.GetAllReaders().Count());
         }
 
         [TestMethod()]
         public void DeleteBookEventTest()
         {
-            throw new NotImplementedException();
+            var bookEvent = dataService.GetAllBookEvents().First();
+            var counter = dataService.GetAllBookEvents().Count();
+            dataService.DeleteBookEvent(bookEvent);
+            Assert.AreEqual(counter - 1, dataService.GetAllBookEvents().Count());
         }
     }
 }

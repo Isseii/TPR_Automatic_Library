@@ -106,6 +106,7 @@ namespace Automatic_Library.Logic
                 if (bookCopy.Isbn.Equals(isbn))
                 {
                     _dataRepository.DeleteBookCopy(bookCopy);
+                    return;
                 }
             }
         }
