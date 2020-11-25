@@ -67,9 +67,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Automatic_Library\Zad1Library.csproj">
+    <ProjectReference Include="..\Automatic_Library\Automatic_Library.csproj">
       <Project>{7af3f1c2-d59e-48cc-acc1-5a17b6ed6659}</Project>
-      <Name>Zad1Library</Name>
+      <Name>Automatic_Library</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
