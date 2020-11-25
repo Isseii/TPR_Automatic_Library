@@ -20,20 +20,20 @@ namespace LibraryTest.DataFiller
         private List<string> _titles = new List<string>();
         private List<string> _authors = new List<string>();
         private List<string> _publishers = new List<string>();
-        private Random rnd = new Random();
+        private readonly Random rnd = new Random();
 
         public RandomDataHolder()
         {
-            populateLists();
-            generateRandomReaders();
-            generateRandomBookDescriptions();
-            generateRandomBookCopies();
-            generateRandomBookEvents();
+            PopulateLists();
+            GenerateRandomReaders();
+            GenerateRandomBookDescriptions();
+            GenerateRandomBookCopies();
+            GenerateRandomBookEvents();
             
    
         }
 
-        private void populateLists()
+        private void PopulateLists()
         {
             _names = new List<string> { "Dominik", "Sebastian","Janusz","Filip","Maciej","Roman","Pawel","Tomek","Izak","Andrzej","Juliusz" };
             _lastNames = new List<string> { "Kolwaski", "Nowak", "Cezar", "Karski", "Kujawski", "Baczynski", "Gruda", "Raj", "Makowski", "Nawrocki", "Fiszer" };
@@ -43,7 +43,7 @@ namespace LibraryTest.DataFiller
 
         }
 
-        private void generateRandomReaders()
+        private void GenerateRandomReaders()
         {
    
             int index1;
@@ -68,13 +68,12 @@ namespace LibraryTest.DataFiller
             }
         }
 
-        private void generateRandomBookDescriptions()
+        private void GenerateRandomBookDescriptions()
         {
    
             int index1;
             int index2;
             int index3;
-            int oneToDelete;
 
             while (BookDescriptions.Count() < 6)
             {
@@ -88,7 +87,7 @@ namespace LibraryTest.DataFiller
 
 
 
-        private void generateRandomBookCopies()
+        private void GenerateRandomBookCopies()
         {
            
             int index1;
@@ -96,12 +95,12 @@ namespace LibraryTest.DataFiller
             while (BookCopies.Count() < 10)
             {
                 index1 = rnd.Next(0, BookDescriptions.Count());
-                string isbn = randomIsbn();
+                string isbn;
 
                 bool unique = false;
 
                 while (!unique) {
-                    isbn = randomIsbn();
+                    isbn = RandomIsbn();
                     foreach (var item in BookCopies)
                     {
                         if (isbn == item.Isbn)
@@ -114,13 +113,13 @@ namespace LibraryTest.DataFiller
                     unique = true;
                 }
 
-                BookCopies.Add(new BookCopy(BookDescriptions[index1], DateTime.Now, randomIsbn()));
+                BookCopies.Add(new BookCopy(BookDescriptions[index1], DateTime.Now, RandomIsbn()));
 
             }
         }
 
 
-        private void generateRandomBookEvents()
+        private void GenerateRandomBookEvents()
         {
             int book1 = 0;
             int book2 = 0;
@@ -155,7 +154,7 @@ namespace LibraryTest.DataFiller
             BookEvents.Add(new Return(BookCopies[book3], Readers[book3Reader], new DateTime(2020, 12, 4)));
         }
 
-        private string randomIsbn()
+        private string RandomIsbn()
         {
             string pool = "1234567890";
             StringBuilder holder = new StringBuilder(13);
