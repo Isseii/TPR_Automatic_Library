@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Automatic_Library", "Zad1\Automatic_Library\Automatic_Library.csproj", "{7AF3F1C2-D59E-48CC-ACC1-5A17B6ED6659}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zad1Library", "Zad1\Automatic_Library\Zad1Library.csproj", "{7AF3F1C2-D59E-48CC-ACC1-5A17B6ED6659}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryTest", "Zad1\LibraryTest\LibraryTest.csproj", "{7E426EF9-187F-4BC0-904E-115BB75EDDBF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zad1LibraryTest", "Zad1\LibraryTest\Zad1LibraryTest.csproj", "{7E426EF9-187F-4BC0-904E-115BB75EDDBF}"
 	ProjectSection(ProjectDependencies) = postProject
 		{7AF3F1C2-D59E-48CC-ACC1-5A17B6ED6659} = {7AF3F1C2-D59E-48CC-ACC1-5A17B6ED6659}
 	EndProjectSection
