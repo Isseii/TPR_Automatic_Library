@@ -19,10 +19,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zad2Serializer", "Zad2\Zad2
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zad2SerializerTest", "Zad2\Zad2SerializerTest\Zad2SerializerTest.csproj", "{CC7D4EB3-AC34-4F82-A11C-69022849172F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Zad1", "Zad1", "{726FD4CD-DD35-4502-9614-86F522C3186B}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Zad2", "Zad2", "{BBD42C59-BF51-45E3-8376-A6CF188144E5}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,12 +44,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{7AF3F1C2-D59E-48CC-ACC1-5A17B6ED6659} = {726FD4CD-DD35-4502-9614-86F522C3186B}
-		{7E426EF9-187F-4BC0-904E-115BB75EDDBF} = {726FD4CD-DD35-4502-9614-86F522C3186B}
-		{F37D33FF-AAB3-4EFD-87CD-9BABC2ACA914} = {BBD42C59-BF51-45E3-8376-A6CF188144E5}
-		{CC7D4EB3-AC34-4F82-A11C-69022849172F} = {BBD42C59-BF51-45E3-8376-A6CF188144E5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BBB3D7B1-D175-4987-AFBE-317218A95B14}
