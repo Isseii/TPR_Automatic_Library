@@ -18,6 +18,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zad2Serializer", "Zad2\Zad2Serializer\Zad2Serializer.csproj", "{F37D33FF-AAB3-4EFD-87CD-9BABC2ACA914}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zad2SerializerTest", "Zad2\Zad2SerializerTest\Zad2SerializerTest.csproj", "{CC7D4EB3-AC34-4F82-A11C-69022849172F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F37D33FF-AAB3-4EFD-87CD-9BABC2ACA914} = {F37D33FF-AAB3-4EFD-87CD-9BABC2ACA914}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
