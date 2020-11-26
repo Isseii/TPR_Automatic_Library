@@ -33,7 +33,7 @@ namespace Zad2SerializerTest
             serializer.serialize();
 
             string serializedContent = File.ReadAllText(fileName);
-            //Assert.AreEqual(serializedContent, @".");
+            Assert.AreEqual(serializedContent, @"null");
         }
     }
 }
