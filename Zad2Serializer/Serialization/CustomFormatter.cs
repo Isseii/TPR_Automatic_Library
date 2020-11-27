@@ -26,7 +26,36 @@ namespace Zad2Serializer.Serialization
 
         public override void Serialize(Stream serializationStream, object graph)
         {
-            throw new NotImplementedException();
+            if (graph is ISerializable data)
+            {
+                SerializationInfo info = new SerializationInfo(graph.GetType(), new FormatterConverter());
+                Binder.BindToName(graph.GetType(), out string assemblyName, out string typeName);
+
+                Data += "{" + assemblyName + "|" + typeName + "|" + m_idGenerator.GetId(graph, out bool firstTime) + "}\n";
+                data.GetObjectData(info, Context);
+
+                foreach (SerializationEntry item in info)
+                {
+                    WriteMember(item.Name, item.Value);
+                }
+
+                while (m_objectQueue.Count != 0)
+                {
+                    Serialize(null, m_objectQueue.Dequeue());
+                }
+
+                if (serializationStream != null)
+                {
+                    using (StreamWriter writer = new StreamWriter(serializationStream))
+                    {
+                        writer.Write(Data);
+                    }
+                }
+            }
+            else
+            {
+                throw new ArgumentException("Cannot serialize provided object.");
+            }
         }
 
         protected override void WriteArray(object obj, string name, Type memberType)
@@ -51,7 +80,7 @@ namespace Zad2Serializer.Serialization
 
         protected override void WriteDateTime(DateTime val, string name)
         {
-            Data += "[" + val.GetType() + "|" + name + "|" + val.ToString("d", DateTimeFormatInfo.InvariantInfo) + "]";
+            Data += "[" + val.GetType() + "|" + name + "|" + val.ToString("d", DateTimeFormatInfo.InvariantInfo) + "]\n";
         }
 
         protected override void WriteDecimal(decimal val, string name)
@@ -71,25 +100,25 @@ namespace Zad2Serializer.Serialization
 
         protected override void WriteInt32(int val, string name)
         {
-            Data += "[" + val.GetType() + "|" + name + "|" + val.ToString(CultureInfo.InvariantCulture) + "]";
+            Data += "[" + val.GetType() + "|" + name + "|" + val.ToString(CultureInfo.InvariantCulture) + "]\n";
         }
 
         protected override void WriteInt64(long val, string name)
         {
-            Data += "[" + val.GetType() + "|" + name + "|" + val.ToString(CultureInfo.InvariantCulture) + "]";
+            Data += "[" + val.GetType() + "|" + name + "|" + val.ToString(CultureInfo.InvariantCulture) + "]\n";
         }
 
         protected override void WriteObjectRef(object obj, string name, Type memberType)
         {
             if (memberType.Equals(typeof(String)))
             {
-                Data += "[" + obj.GetType() + "|" + name + "|" + (string)obj + "]";
+                Data += "[" + obj.GetType() + "|" + name + "|" + (string)obj + "]\n";
             }
             else
             {
                 if (null != obj)
                 {
-                    Data += "[" + obj.GetType() + "|" + name + "|ref" + m_idGenerator.GetId(obj, out bool firstTime).ToString() + "]";
+                    Data += "[" + obj.GetType() + "|" + name + "|ref" + m_idGenerator.GetId(obj, out bool firstTime).ToString() + "]\n";
                     if (firstTime)
                     {
                         m_objectQueue.Enqueue(obj);
@@ -97,7 +126,7 @@ namespace Zad2Serializer.Serialization
                 }
                 else
                 {
-                    Data += "[" + "null" + "|" + name + "]";
+                    Data += "[" + "null" + "|" + name + "]\n";
                 }
             }
 
@@ -110,7 +139,7 @@ namespace Zad2Serializer.Serialization
 
         protected override void WriteSingle(float val, string name)
         {
-            Data += "[" + val.GetType() + "|" + name + "|" + val.ToString(CultureInfo.InvariantCulture) + "]";
+            Data += "[" + val.GetType() + "|" + name + "|" + val.ToString(CultureInfo.InvariantCulture) + "]\n";
         }
 
         protected override void WriteTimeSpan(TimeSpan val, string name)
