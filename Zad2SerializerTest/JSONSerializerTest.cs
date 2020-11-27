@@ -149,7 +149,11 @@ namespace Zad2SerializerTest
         [TestMethod]
         public void AObjDeserializationTest()
         {
-            JSONSerialization<A> tmp = new JSONSerialization<A>("ASerializationTest.json", a);
+            string fileName = "ADeserializationTest.json";
+            JSONSerialization<A> serializer = new JSONSerialization<A>(fileName, a);
+            serializer.serialize();
+
+            JSONSerialization<A> tmp = new JSONSerialization<A>("ADeserializationTest.json", a);
             A desResult = tmp.deserialize();
 
             Assert.AreEqual(desResult.Name, a.Name);
@@ -161,7 +165,11 @@ namespace Zad2SerializerTest
         [TestMethod]
         public void BObjDeserializationTest()
         {
-            JSONSerialization<B> tmp = new JSONSerialization<B>("BSerializationTest.json", b);
+            string fileName = "BDeserializationTest.json";
+            JSONSerialization<B> serializer = new JSONSerialization<B>(fileName, b);
+            serializer.serialize();
+
+            JSONSerialization<B> tmp = new JSONSerialization<B>("BDeserializationTest.json", b);
             B desResult = tmp.deserialize();
 
             Assert.AreEqual(desResult.Name, b.Name);
@@ -173,7 +181,11 @@ namespace Zad2SerializerTest
         [TestMethod]
         public void CObjDeserializationTest()
         {
-            JSONSerialization<C> tmp = new JSONSerialization<C>("CSerializationTest.json", c);
+            string fileName = "CDeserializationTest.json";
+            JSONSerialization<C> serializer = new JSONSerialization<C>(fileName, c);
+            serializer.serialize();
+
+            JSONSerialization<C> tmp = new JSONSerialization<C>("CDeserializationTest.json", c);
             C desResult = tmp.deserialize();
 
             Assert.AreEqual(desResult.Name, c.Name);
