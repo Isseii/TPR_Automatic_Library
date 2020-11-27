@@ -36,8 +36,8 @@ namespace Zad2SerializerTest
 
             string serializedContent = File.ReadAllText(fileName);
             JObject targetJObject = JsonConvert.DeserializeObject<JObject>(@"{
-                                                     ""$id"": ""1"",
-                                                     ""$type"": ""Zad2Serializer.ObjectModel.A, Zad2Serializer"",
+                                                      ""$id"": ""1"",
+                                                      ""$type"": ""Zad2Serializer.ObjectModel.A, Zad2Serializer"",
                                                       ""Name"": ""Dominick"",
                                                       ""LastName"": ""Carski"",
                                                       ""Number"": 2137,
@@ -61,7 +61,7 @@ namespace Zad2SerializerTest
                                                                                     }
                                                                           }
                                                                 }
-                                                 }");
+                                                  }");
             JObject resultObject = JsonConvert.DeserializeObject<JObject>(serializedContent);
             Assert.IsTrue(JToken.DeepEquals(resultObject, targetJObject));
         }
@@ -144,5 +144,43 @@ namespace Zad2SerializerTest
             JObject resultObject = JsonConvert.DeserializeObject<JObject>(serializedContent);
             Assert.IsTrue(JToken.DeepEquals(resultObject, targetJObject));
         }
+
+
+        [TestMethod]
+        public void AObjDeserializationTest()
+        {
+            JSONSerialization<A> tmp = new JSONSerialization<A>("ASerializationTest.json", a);
+            A desResult = tmp.deserialize();
+
+            Assert.AreEqual(desResult.Name, a.Name);
+            Assert.AreEqual(desResult.LastName, a.LastName);
+            Assert.AreEqual(desResult.Number, a.Number);
+            Assert.AreEqual(desResult.Date, a.Date);
+        }
+
+        [TestMethod]
+        public void BObjDeserializationTest()
+        {
+            JSONSerialization<B> tmp = new JSONSerialization<B>("BSerializationTest.json", b);
+            B desResult = tmp.deserialize();
+
+            Assert.AreEqual(desResult.Name, b.Name);
+            Assert.AreEqual(desResult.LastName, b.LastName);
+            Assert.AreEqual(desResult.Number, b.Number);
+            Assert.AreEqual(desResult.Date, b.Date);
+        }
+
+        [TestMethod]
+        public void CObjDeserializationTest()
+        {
+            JSONSerialization<C> tmp = new JSONSerialization<C>("CSerializationTest.json", c);
+            C desResult = tmp.deserialize();
+
+            Assert.AreEqual(desResult.Name, c.Name);
+            Assert.AreEqual(desResult.LastName, c.LastName);
+            Assert.AreEqual(desResult.Number, c.Number);
+            Assert.AreEqual(desResult.Date, c.Date);
+        }
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Runtime.Serialization;
 
 namespace Zad2Serializer.ObjectModel
@@ -11,6 +12,7 @@ namespace Zad2Serializer.ObjectModel
         public DateTime Date { get; set; }
         public B ObjB { get; set; }
 
+        [JsonConstructor]
         public A(string name, string lastName, int number, DateTime date, B objB)
         {
             Name = name;
@@ -19,7 +21,6 @@ namespace Zad2Serializer.ObjectModel
             Date = date;
             ObjB = objB;
         }
-
 
         public A(SerializationInfo info, StreamingContext context)
         {
