@@ -71,7 +71,7 @@ namespace Zad2Serializer.Serialization
                         else
                         {
                             Type type = Type.GetType(tType);
-                            serializationInfo.AddValue(tName, Convert.ChangeType(tValue, type), type);
+                            serializationInfo.AddValue(tName, Convert.ChangeType(tValue, type, CultureInfo.InvariantCulture), type);
                         }
                     }
                 }

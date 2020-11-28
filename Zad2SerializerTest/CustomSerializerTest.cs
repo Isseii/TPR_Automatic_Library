@@ -81,5 +81,59 @@ namespace Zad2SerializerTest
 
         }
 
+
+        [TestMethod]
+        public void AObjCustomDserializationTest()
+        {
+            string fileName = "ACustomDeserializationTest.txt";
+            CustomSerialization<A> tmp = new CustomSerialization<A>(fileName, a);
+            tmp.Serialize();
+
+            CustomSerialization<A> tmpDes = new CustomSerialization<A>(fileName, a);
+            A desResult = tmpDes.Deserialize();
+
+            Assert.AreEqual(desResult.Name, a.Name);
+            Assert.AreEqual(desResult.LastName, a.LastName);
+            Assert.AreEqual(desResult.Number, a.Number);
+            Assert.AreEqual(desResult.Date, a.Date);
+
+        }
+
+
+        [TestMethod]
+        public void BObjCustomDserializationTest()
+        {
+            string fileName = "BCustomDeserializationTest.txt";
+            CustomSerialization<B> tmp = new CustomSerialization<B>(fileName, b);
+            tmp.Serialize();
+
+            CustomSerialization<B> tmpDes = new CustomSerialization<B>(fileName, b);
+            B desResult = tmpDes.Deserialize();
+
+            Assert.AreEqual(desResult.Name, b.Name);
+            Assert.AreEqual(desResult.LastName, b.LastName);
+            Assert.AreEqual(desResult.Number, b.Number);
+            Assert.AreEqual(desResult.Date, b.Date);
+
+        }
+
+
+        [TestMethod]
+        public void CObjCustomDserializationTest()
+        {
+            string fileName = "CCustomDeserializationTest.txt";
+            CustomSerialization<C> tmp = new CustomSerialization<C>(fileName, c);
+            tmp.Serialize();
+
+            CustomSerialization<C> tmpDes = new CustomSerialization<C>(fileName, c);
+            C desResult = tmpDes.Deserialize();
+
+            Assert.AreEqual(desResult.Name, c.Name);
+            Assert.AreEqual(desResult.LastName, c.LastName);
+            Assert.AreEqual(desResult.Number, c.Number);
+            Assert.AreEqual(desResult.Date, c.Date);
+
+        }
+
     }
 }
