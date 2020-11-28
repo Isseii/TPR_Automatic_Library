@@ -53,10 +53,6 @@ namespace Zad2ConsoleApp
             B b;
             C c;
 
-            string[] names;
-            string[] lastNames;
-            int[] numbers;
-            DateTime[] dates;
             a = new A("Dominik", "Karski", 2137, new DateTime(2019, 12, 1), null);
             b = new B("Sebastian", "Kujawski", 9669, new DateTime(2019, 10, 1), null);
             c = new C("Winston", "Churchill", 5321, new DateTime(2020, 1, 2), null);
@@ -64,7 +60,7 @@ namespace Zad2ConsoleApp
             a.ObjB = b;
             b.ObjC = c;
             c.ObjA = a;
-            int x = 10;
+            int x = -1;
             ABC holder = a;
 
 
