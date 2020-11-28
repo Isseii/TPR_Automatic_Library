@@ -14,7 +14,6 @@ namespace Zad2Serializer.Serialization
         public override ISurrogateSelector SurrogateSelector { get; set; }
 
         private string Data = "";
-        private List<string> SaveIT = new List<string>();
 
         public CustomFormatter()
         {
@@ -41,8 +40,7 @@ namespace Zad2Serializer.Serialization
                 {
                     WriteMember(item.Name, item.Value);
                 }
-                SaveIT.Add(Data+"\n");
-                Data = null;
+                Data += "\n";
                 while (m_objectQueue.Count != 0)
                 {
                     Serialize(null, m_objectQueue.Dequeue());
@@ -54,12 +52,7 @@ namespace Zad2Serializer.Serialization
 
                    using (StreamWriter writer = new StreamWriter(serializationStream))
                     {
-                        foreach (string s in SaveIT)
-                        {
-     
-                            writer.Write(s);
-                        }
-                        //writer.Write(Data);
+                         writer.Write(Data);
                     }
                 }
             }
