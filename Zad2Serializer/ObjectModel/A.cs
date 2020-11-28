@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 
 namespace Zad2Serializer.ObjectModel
 {
-    public class A : ISerializable
+    public class A : ABC, ISerializable
     {
         public string Name { get; set; }
         public string LastName { get; set; }
@@ -38,6 +38,11 @@ namespace Zad2Serializer.ObjectModel
             info.AddValue("Number", Number);
             info.AddValue("Date", Date);
             info.AddValue("ObjB", ObjB, typeof(B));
+        }
+
+        public override string ToString()
+        {
+            return "Name : " + Name + ", Last Name : " + LastName + ", Number : " + Number + ", Date : " + Date.ToString() +", Object B" ;
         }
     }
 }
