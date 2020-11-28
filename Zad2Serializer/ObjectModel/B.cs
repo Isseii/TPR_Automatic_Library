@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Zad2Serializer.ObjectModel
 {
-    public class B : ISerializable
+    public class B : ABC, ISerializable
     {
         public string Name { get; set; }
         public string LastName { get; set; }
@@ -42,6 +42,11 @@ namespace Zad2Serializer.ObjectModel
             info.AddValue("Number", Number);
             info.AddValue("Date", Date);
             info.AddValue("ObjC", ObjC, typeof(C));
+        }
+
+        public override string ToString()
+        {
+            return "Name : " + Name + ", Last Name : " + LastName + ", Number : " + Number + ", Date : " + Date.ToString() + ", Object C";
         }
     }
 }
