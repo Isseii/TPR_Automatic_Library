@@ -23,7 +23,73 @@ namespace Zad2Serializer.Serialization
 
         public override object Deserialize(Stream serializationStream)
         {
-            throw new NotImplementedException();
+            object desObject = null;
+            Dictionary<long, DesObjectInfo> refObjectInfos = new Dictionary<long, DesObjectInfo>();
+            Dictionary<long, object> desObjects = new Dictionary<long, object>();
+
+            using (StreamReader reader = new StreamReader(serializationStream))
+            {
+                while (!reader.EndOfStream) 
+                {
+                    string header = reader.ReadLine().Remove(0, 1);
+                    header = header.Remove(header.Length - 1);
+                    string[] hvals = header.Split('|');
+
+                    Type objectType = Binder.BindToType(hvals[0], hvals[1]);
+                    long id = long.Parse(hvals[2]);
+
+                    SerializationInfo serializationInfo = new SerializationInfo(objectType, new FormatterConverter());
+                    object obj = FormatterServices.GetUninitializedObject(objectType);
+
+                    desObjects.Add(id, obj);
+
+                    if (desObject == null)
+                    {
+                        desObject = obj;
+                    }
+
+                    string body = reader.ReadLine();
+                    string[] bvals = body.Split('[', ']');
+
+                    foreach (string field in bvals)
+                    {
+                        string[] elements = field.Split('|');
+                        string tType = elements[0];
+                        string tName = elements[1];
+                        string tValue = elements[2];
+
+                        if (tValue.Contains("ref"))
+                        {
+                            long idref = Convert.ToInt64(tValue.Remove(0, 3));
+                            refObjectInfos.Add(idref, new DesObjectInfo(Type.GetType(tType), tName, idref, serializationInfo));
+                        }
+                        else if (tValue.Contains("null"))
+                        {
+                            Type type = Type.GetType(tType);
+                            serializationInfo.AddValue(tName, null, type);
+                        }
+                        else
+                        {
+                            Type type = Type.GetType(tType);
+                            serializationInfo.AddValue(tName, Convert.ChangeType(tValue, type), type);
+                        }
+                    }
+                }
+            }
+
+            foreach (var refInfo in refObjectInfos)
+            {
+                var refInfoV = refInfo.Value;
+                refInfoV.SerializationInfo.AddValue(refInfoV.Name, desObjects[refInfoV.RefId], refInfoV.Type);
+            }
+
+            for (int i = 1; i < desObjects.Count + 1; i++)
+            {
+                var constructor = desObjects[i].GetType().GetConstructor(new Type[] { typeof(SerializationInfo), typeof(StreamingContext) });
+                constructor.Invoke(desObjects[i], new object[] { refObjectInfos[i].SerializationInfo, Context});
+            }
+
+            return desObject;
         }
 
         public override void Serialize(Stream serializationStream, object graph)
@@ -50,9 +116,9 @@ namespace Zad2Serializer.Serialization
                 {
 
 
-                   using (StreamWriter writer = new StreamWriter(serializationStream))
+                    using (StreamWriter writer = new StreamWriter(serializationStream))
                     {
-                         writer.Write(Data);
+                        writer.Write(Data);
                     }
                 }
             }
@@ -130,7 +196,7 @@ namespace Zad2Serializer.Serialization
                 }
                 else
                 {
-                    Data += "[" + "null" + "|" + name + "]";
+                    Data += "[" + obj.GetType() + "|" + name + "|" + "null" + "]";
                 }
             }
 
