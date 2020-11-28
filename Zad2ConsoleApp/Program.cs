@@ -75,7 +75,7 @@ namespace Zad2ConsoleApp
                 Console.WriteLine("JSON deserialization (2)");
                 Console.WriteLine("Custom serialization (3)");
                 Console.WriteLine("Custom deserialization (4)");
-                Console.WriteLine("Change type from A (5)");
+                Console.WriteLine("Change type from " + holder.GetType().Name +" (5)");
                 Console.WriteLine("Quit (0)");
                 x = Convert.ToInt32(Console.ReadLine());
                 switch(x){
