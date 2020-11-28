@@ -28,7 +28,7 @@ namespace Zad2SerializerTest
         }
 
         [TestMethod]
-        public void AObjSerializationTest()
+        public void AObjJSONSerializationTest()
         {
             string fileName = "ASerializationTest.json";
             JSONSerialization<A> serializer = new JSONSerialization<A>(fileName, a);
@@ -68,7 +68,7 @@ namespace Zad2SerializerTest
 
 
         [TestMethod]
-        public void BObjSerializationTest()
+        public void BObjJSONSerializationTest()
         {
             string fileName = "BSerializationTest.json";
             JSONSerialization<B> serializer = new JSONSerialization<B>(fileName, b);
@@ -107,7 +107,7 @@ namespace Zad2SerializerTest
         }
 
         [TestMethod]
-        public void CObjSerializationTest()
+        public void CObjJSONSerializationTest()
         {
             string fileName = "CSerializationTest.json";
             JSONSerialization<C> serializer = new JSONSerialization<C>(fileName, c);
@@ -147,7 +147,7 @@ namespace Zad2SerializerTest
 
 
         [TestMethod]
-        public void AObjDeserializationTest()
+        public void AObjJSONDeserializationTest()
         {
             string fileName = "ADeserializationTest.json";
             JSONSerialization<A> serializer = new JSONSerialization<A>(fileName, a);
@@ -163,7 +163,7 @@ namespace Zad2SerializerTest
         }
 
         [TestMethod]
-        public void BObjDeserializationTest()
+        public void BObjJSONDeserializationTest()
         {
             string fileName = "BDeserializationTest.json";
             JSONSerialization<B> serializer = new JSONSerialization<B>(fileName, b);
@@ -179,7 +179,7 @@ namespace Zad2SerializerTest
         }
 
         [TestMethod]
-        public void CObjDeserializationTest()
+        public void CObjJSONDeserializationTest()
         {
             string fileName = "CDeserializationTest.json";
             JSONSerialization<C> serializer = new JSONSerialization<C>(fileName, c);
