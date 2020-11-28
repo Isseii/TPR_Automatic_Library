@@ -32,7 +32,7 @@ namespace Zad2SerializerTest
         {
             string fileName = "ACustomSerializationTest.txt";
             CustomSerialization<A> tmp = new CustomSerialization<A>(fileName, a);
-            tmp.serialize();
+            tmp.Serialize();
 
             string serialized = File.ReadAllText(fileName);
 
@@ -50,7 +50,7 @@ namespace Zad2SerializerTest
         {
             string fileName = "BCustomSerializationTest.txt";
             CustomSerialization<B> tmp = new CustomSerialization<B>(fileName, b);
-            tmp.serialize();
+            tmp.Serialize();
 
             string serialized = File.ReadAllText(fileName);
 
@@ -68,7 +68,7 @@ namespace Zad2SerializerTest
         {
             string fileName = "CCustomSerializationTest.txt";
             CustomSerialization<C> tmp = new CustomSerialization<C>(fileName, c);
-            tmp.serialize();
+            tmp.Serialize();
 
             string serialized = File.ReadAllText(fileName);
 
