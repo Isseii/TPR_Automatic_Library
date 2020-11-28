@@ -80,5 +80,6 @@ namespace Zad2SerializerTest
                 "[System.String|Name|Sebaschan][System.String|LastName|Kijawiński][System.Int32|Number|9669][System.DateTime|Date|10/01/2019][Zad2Serializer.ObjectModel.C|ObjC|ref1]" + "\n", serialized);
 
         }
+
     }
 }
