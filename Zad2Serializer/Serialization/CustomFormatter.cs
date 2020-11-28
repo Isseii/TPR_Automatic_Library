@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Runtime.Serialization;
+using System.Text;
 
 namespace Zad2Serializer.Serialization
 {
@@ -12,6 +14,7 @@ namespace Zad2Serializer.Serialization
         public override ISurrogateSelector SurrogateSelector { get; set; }
 
         private string Data = "";
+        private List<string> SaveIT = new List<string>();
 
         public CustomFormatter()
         {
@@ -31,14 +34,15 @@ namespace Zad2Serializer.Serialization
                 SerializationInfo info = new SerializationInfo(graph.GetType(), new FormatterConverter());
                 Binder.BindToName(graph.GetType(), out string assemblyName, out string typeName);
 
-                Data += "{" + assemblyName + "|" + typeName + "|" + m_idGenerator.GetId(graph, out bool firstTime) + "}\n";
+                Data += "{" + assemblyName + "|" + typeName + "|" + m_idGenerator.GetId(graph, out bool firstTime) + "}"+"\n";
                 data.GetObjectData(info, Context);
 
                 foreach (SerializationEntry item in info)
                 {
                     WriteMember(item.Name, item.Value);
                 }
-
+                SaveIT.Add(Data+"\n");
+                Data = null;
                 while (m_objectQueue.Count != 0)
                 {
                     Serialize(null, m_objectQueue.Dequeue());
@@ -46,9 +50,16 @@ namespace Zad2Serializer.Serialization
 
                 if (serializationStream != null)
                 {
-                    using (StreamWriter writer = new StreamWriter(serializationStream))
+
+
+                   using (StreamWriter writer = new StreamWriter(serializationStream))
                     {
-                        writer.Write(Data);
+                        foreach (string s in SaveIT)
+                        {
+     
+                            writer.Write(s);
+                        }
+                        //writer.Write(Data);
                     }
                 }
             }
@@ -80,7 +91,7 @@ namespace Zad2Serializer.Serialization
 
         protected override void WriteDateTime(DateTime val, string name)
         {
-            Data += "[" + val.GetType() + "|" + name + "|" + val.ToString("d", DateTimeFormatInfo.InvariantInfo) + "]\n";
+            Data += "[" + val.GetType() + "|" + name + "|" + val.ToString("d", DateTimeFormatInfo.InvariantInfo) + "]";
         }
 
         protected override void WriteDecimal(decimal val, string name)
@@ -100,25 +111,25 @@ namespace Zad2Serializer.Serialization
 
         protected override void WriteInt32(int val, string name)
         {
-            Data += "[" + val.GetType() + "|" + name + "|" + val.ToString(CultureInfo.InvariantCulture) + "]\n";
+            Data += "[" + val.GetType() + "|" + name + "|" + val.ToString(CultureInfo.InvariantCulture) + "]";
         }
 
         protected override void WriteInt64(long val, string name)
         {
-            Data += "[" + val.GetType() + "|" + name + "|" + val.ToString(CultureInfo.InvariantCulture) + "]\n";
+            Data += "[" + val.GetType() + "|" + name + "|" + val.ToString(CultureInfo.InvariantCulture) + "]";
         }
 
         protected override void WriteObjectRef(object obj, string name, Type memberType)
         {
             if (memberType.Equals(typeof(String)))
             {
-                Data += "[" + obj.GetType() + "|" + name + "|" + (string)obj + "]\n";
+                Data += "[" + obj.GetType() + "|" + name + "|" + (string)obj + "]";
             }
             else
             {
                 if (null != obj)
                 {
-                    Data += "[" + obj.GetType() + "|" + name + "|ref" + m_idGenerator.GetId(obj, out bool firstTime).ToString() + "]\n";
+                    Data += "[" + obj.GetType() + "|" + name + "|ref" + m_idGenerator.GetId(obj, out bool firstTime).ToString() + "]";
                     if (firstTime)
                     {
                         m_objectQueue.Enqueue(obj);
@@ -126,7 +137,7 @@ namespace Zad2Serializer.Serialization
                 }
                 else
                 {
-                    Data += "[" + "null" + "|" + name + "]\n";
+                    Data += "[" + "null" + "|" + name + "]";
                 }
             }
 
@@ -139,7 +150,7 @@ namespace Zad2Serializer.Serialization
 
         protected override void WriteSingle(float val, string name)
         {
-            Data += "[" + val.GetType() + "|" + name + "|" + val.ToString(CultureInfo.InvariantCulture) + "]\n";
+            Data += "[" + val.GetType() + "|" + name + "|" + val.ToString(CultureInfo.InvariantCulture) + "]";
         }
 
         protected override void WriteTimeSpan(TimeSpan val, string name)
