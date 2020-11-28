@@ -82,7 +82,7 @@ namespace Zad2ConsoleApp
                     case 1:
                         {
                             JSONSerialization<ABC> serialize = new JSONSerialization<ABC>("AConsoleResultJSON.json", holder);
-                            serialize.serialize();
+                            serialize.Serialize();
                             Console.WriteLine("Object " + holder.GetType().Name + " serialized to JSON format" + "\n");
                             break;
                         }                
@@ -90,9 +90,9 @@ namespace Zad2ConsoleApp
                         {
                             string fileName = "AConsoleJsonDesTmp.json";
                             JSONSerialization<ABC> serialize = new JSONSerialization<ABC>(fileName, holder);
-                            serialize.serialize();
+                            serialize.Serialize();
                             JSONSerialization<ABC> tmp = new JSONSerialization<ABC>(fileName, holder);
-                            ABC desResult = tmp.deserialize();
+                            ABC desResult = tmp.Deserialize();
                             Console.WriteLine("Object " + holder.GetType().Name + " deserialized fromt JSON format" + "\n");
                             Console.WriteLine(desResult.ToString());
                             break;
@@ -100,19 +100,19 @@ namespace Zad2ConsoleApp
                     case 3:
                         {
                             CustomSerialization<ABC> serialize = new CustomSerialization<ABC>("AConsoleSerializationResultCustom.txt", holder);
-                            serialize.serialize();
+                            serialize.Serialize();
                             Console.WriteLine("Object " + holder.GetType().Name + "serialized to custom format" + "\n");
                             break;
                         }
                     case 4:
                         {
-                            string fileName = "AConsoleCustomDesTmp.json";
+                            string fileName = "AConsoleCustomDesTmp.txt";
                             CustomSerialization<ABC> serialize = new CustomSerialization<ABC>(fileName, holder);
-                            serialize.serialize();
+                            serialize.Serialize();
                             CustomSerialization<ABC> tmp = new CustomSerialization<ABC>(fileName, holder);
-                            // ABC desResult = tmp.deserialize();
-                            //  Console.WriteLine("Object " + holder.GetType().Name +" deserialized from Custom format" + "\n");
-                            //   Console.WriteLine(desResult.ToString());
+                            ABC desResult = tmp.Deserialize();
+                            Console.WriteLine("Object " + holder.GetType().Name +" deserialized from Custom format" + "\n");
+                            Console.WriteLine(desResult.ToString());
 
                             break;
                         }

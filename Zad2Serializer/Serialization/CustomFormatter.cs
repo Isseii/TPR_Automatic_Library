@@ -49,7 +49,7 @@ namespace Zad2Serializer.Serialization
                     }
 
                     string body = reader.ReadLine();
-                    string[] bvals = body.Split('[', ']');
+                    string[] bvals = body.Split(new char[] { '[', ']' } , StringSplitOptions.RemoveEmptyEntries);
 
                     foreach (string field in bvals)
                     {
@@ -61,7 +61,7 @@ namespace Zad2Serializer.Serialization
                         if (tValue.Contains("ref"))
                         {
                             long idref = Convert.ToInt64(tValue.Remove(0, 3));
-                            refObjectInfos.Add(idref, new DesObjectInfo(Type.GetType(tType), tName, idref, serializationInfo));
+                            refObjectInfos.Add(id, new DesObjectInfo(Type.GetType(tType), tName, idref, serializationInfo));
                         }
                         else if (tValue.Contains("null"))
                         {
@@ -83,7 +83,7 @@ namespace Zad2Serializer.Serialization
                 refInfoV.SerializationInfo.AddValue(refInfoV.Name, desObjects[refInfoV.RefId], refInfoV.Type);
             }
 
-            for (int i = 1; i < desObjects.Count + 1; i++)
+            for (long i = 1; i < desObjects.Count + 1; i++)
             {
                 var constructor = desObjects[i].GetType().GetConstructor(new Type[] { typeof(SerializationInfo), typeof(StreamingContext) });
                 constructor.Invoke(desObjects[i], new object[] { refObjectInfos[i].SerializationInfo, Context});

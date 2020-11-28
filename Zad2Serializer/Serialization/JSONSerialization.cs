@@ -20,7 +20,7 @@ namespace Zad2Serializer.Serialization
             };
         }
 
-        public void serialize()
+        public void Serialize()
         {
             if (File.Exists(_fileName))
             {
@@ -31,7 +31,7 @@ namespace Zad2Serializer.Serialization
             File.WriteAllText(_fileName, json);
         }
 
-        public T deserialize()
+        public T Deserialize()
         {
             if (!File.Exists(_fileName))
             {

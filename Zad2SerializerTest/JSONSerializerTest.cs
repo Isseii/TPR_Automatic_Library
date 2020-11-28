@@ -32,7 +32,7 @@ namespace Zad2SerializerTest
         {
             string fileName = "ASerializationTest.json";
             JSONSerialization<A> serializer = new JSONSerialization<A>(fileName, a);
-            serializer.serialize();
+            serializer.Serialize();
 
             string serializedContent = File.ReadAllText(fileName);
             JObject targetJObject = JsonConvert.DeserializeObject<JObject>(@"{
@@ -72,7 +72,7 @@ namespace Zad2SerializerTest
         {
             string fileName = "BSerializationTest.json";
             JSONSerialization<B> serializer = new JSONSerialization<B>(fileName, b);
-            serializer.serialize();
+            serializer.Serialize();
 
             string serializedContent = File.ReadAllText(fileName);
             JObject targetJObject = JsonConvert.DeserializeObject<JObject>(@"{
@@ -111,7 +111,7 @@ namespace Zad2SerializerTest
         {
             string fileName = "CSerializationTest.json";
             JSONSerialization<C> serializer = new JSONSerialization<C>(fileName, c);
-            serializer.serialize();
+            serializer.Serialize();
 
             string serializedContent = File.ReadAllText(fileName);
             JObject targetJObject = JsonConvert.DeserializeObject<JObject>(@"{   
@@ -151,10 +151,10 @@ namespace Zad2SerializerTest
         {
             string fileName = "ADeserializationTest.json";
             JSONSerialization<A> serializer = new JSONSerialization<A>(fileName, a);
-            serializer.serialize();
+            serializer.Serialize();
 
             JSONSerialization<A> tmp = new JSONSerialization<A>("ADeserializationTest.json", a);
-            A desResult = tmp.deserialize();
+            A desResult = tmp.Deserialize();
 
             Assert.AreEqual(desResult.Name, a.Name);
             Assert.AreEqual(desResult.LastName, a.LastName);
@@ -167,10 +167,10 @@ namespace Zad2SerializerTest
         {
             string fileName = "BDeserializationTest.json";
             JSONSerialization<B> serializer = new JSONSerialization<B>(fileName, b);
-            serializer.serialize();
+            serializer.Serialize();
 
             JSONSerialization<B> tmp = new JSONSerialization<B>("BDeserializationTest.json", b);
-            B desResult = tmp.deserialize();
+            B desResult = tmp.Deserialize();
 
             Assert.AreEqual(desResult.Name, b.Name);
             Assert.AreEqual(desResult.LastName, b.LastName);
@@ -183,10 +183,10 @@ namespace Zad2SerializerTest
         {
             string fileName = "CDeserializationTest.json";
             JSONSerialization<C> serializer = new JSONSerialization<C>(fileName, c);
-            serializer.serialize();
+            serializer.Serialize();
 
             JSONSerialization<C> tmp = new JSONSerialization<C>("CDeserializationTest.json", c);
-            C desResult = tmp.deserialize();
+            C desResult = tmp.Deserialize();
 
             Assert.AreEqual(desResult.Name, c.Name);
             Assert.AreEqual(desResult.LastName, c.LastName);
