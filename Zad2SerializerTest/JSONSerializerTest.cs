@@ -18,9 +18,9 @@ namespace Zad2SerializerTest
         [TestInitialize()]
         public void SetUp()
         {
-             a = new A("Dominick", "Carski", 2137, new DateTime(2019, 12, 1), null);
-             b = new B("Sebaschan", "Kijawiński", 9669, new DateTime(2019, 10, 1), null);
-             c = new C("Michał", "Karbowany", 5321, new DateTime(2020, 1, 2), null);
+             a = new A("Dominik", "Karski", 4124, new DateTime(2019, 12, 1), null);
+             b = new B("Sebastian", "Kujawski", 9669, new DateTime(2019, 10, 1), null);
+             c = new C("Michał", "Kowalski", 5321, new DateTime(2020, 1, 2), null);
 
             a.ObjB = b;
             b.ObjC = c;
@@ -38,22 +38,22 @@ namespace Zad2SerializerTest
             JObject targetJObject = JsonConvert.DeserializeObject<JObject>(@"{
                                                       ""$id"": ""1"",
                                                       ""$type"": ""Zad2Serializer.ObjectModel.A, Zad2Serializer"",
-                                                      ""Name"": ""Dominick"",
-                                                      ""LastName"": ""Carski"",
-                                                      ""Number"": 2137,
+                                                      ""Name"": ""Dominik"",
+                                                      ""LastName"": ""Karski"",
+                                                      ""Number"": 4124,
                                                       ""Date"": ""2019-12-01T00:00:00"",
                                                       ""ObjB"": {
                                                                 ""$id"": ""2"",
                                                                 ""$type"": ""Zad2Serializer.ObjectModel.B, Zad2Serializer"",
-                                                                ""Name"": ""Sebaschan"",
-                                                                ""LastName"": ""Kijawiński"",
+                                                                ""Name"": ""Sebastian"",
+                                                                ""LastName"": ""Kujawski"",
                                                                 ""Number"": 9669,
                                                                 ""Date"": ""2019-10-01T00:00:00"",
                                                                 ""ObjC"": {
                                                                           ""$id"": ""3"",
                                                                           ""$type"": ""Zad2Serializer.ObjectModel.C, Zad2Serializer"",
                                                                           ""Name"": ""Michał"",
-                                                                          ""LastName"": ""Karbowany"",
+                                                                          ""LastName"": ""Kowalski"",
                                                                           ""Number"": 5321,
                                                                           ""Date"": ""2020-01-02T00:00:00"",
                                                                           ""ObjA"": {
@@ -78,23 +78,23 @@ namespace Zad2SerializerTest
             JObject targetJObject = JsonConvert.DeserializeObject<JObject>(@"{
                                                       ""$id"": ""1"",
                                                       ""$type"": ""Zad2Serializer.ObjectModel.B, Zad2Serializer"",
-                                                      ""Name"": ""Sebaschan"",
-                                                      ""LastName"": ""Kijawiński"",
+                                                      ""Name"": ""Sebastian"",
+                                                      ""LastName"": ""Kujawski"",
                                                       ""Number"": 9669,
                                                       ""Date"": ""2019-10-01T00:00:00"",
                                                       ""ObjC"": {
                                                                     ""$id"": ""2"",
                                                                     ""$type"": ""Zad2Serializer.ObjectModel.C, Zad2Serializer"",
                                                                     ""Name"": ""Michał"",
-                                                                    ""LastName"": ""Karbowany"",
+                                                                    ""LastName"": ""Kowalski"",
                                                                     ""Number"": 5321,
                                                                     ""Date"": ""2020-01-02T00:00:00"",
                                                                     ""ObjA"": {
                                                                           ""$id"": ""3"",
                                                                           ""$type"": ""Zad2Serializer.ObjectModel.A, Zad2Serializer"",
-                                                                          ""Name"": ""Dominick"",
-                                                                          ""LastName"": ""Carski"",
-                                                                          ""Number"": 2137,
+                                                                          ""Name"": ""Dominik"",
+                                                                          ""LastName"": ""Karski"",
+                                                                          ""Number"": 4124,
                                                                           ""Date"": ""2019-12-01T00:00:00"",
                                                                           ""ObjB"": {
                                                                                     ""$ref"": ""1""
@@ -118,21 +118,21 @@ namespace Zad2SerializerTest
                                                       ""$id"": ""1"",
                                                       ""$type"": ""Zad2Serializer.ObjectModel.C, Zad2Serializer"",
                                                       ""Name"": ""Michał"",
-                                                      ""LastName"": ""Karbowany"",
+                                                      ""LastName"": ""Kowalski"",
                                                       ""Number"": 5321,
                                                       ""Date"": ""2020-01-02T00:00:00"",
                                                       ""ObjA"": {
                                                                     ""$id"": ""2"",
                                                                     ""$type"": ""Zad2Serializer.ObjectModel.A, Zad2Serializer"",
-                                                                    ""Name"": ""Dominick"",
-                                                                    ""LastName"": ""Carski"",
-                                                                    ""Number"": 2137,
+                                                                    ""Name"": ""Dominik"",
+                                                                    ""LastName"": ""Karski"",
+                                                                    ""Number"": 4124,
                                                                     ""Date"": ""2019-12-01T00:00:00"",
                                                                     ""ObjB"": {
                                                                           ""$id"": ""3"",
                                                                           ""$type"": ""Zad2Serializer.ObjectModel.B, Zad2Serializer"",
-                                                                          ""Name"": ""Sebaschan"",
-                                                                          ""LastName"": ""Kijawiński"",
+                                                                          ""Name"": ""Sebastian"",
+                                                                          ""LastName"": ""Kujawski"",
                                                                           ""Number"": 9669,
                                                                           ""Date"": ""2019-10-01T00:00:00"",
                                                                           ""ObjC"": {
