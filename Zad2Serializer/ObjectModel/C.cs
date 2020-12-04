@@ -8,6 +8,7 @@ namespace Zad2Serializer.ObjectModel
 {
     public class C : ABC, ISerializable
     {
+
         public string Name { get; set; }
         public string LastName { get; set; }
         public int Number { get; set; }

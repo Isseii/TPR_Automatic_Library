@@ -4,6 +4,7 @@ using System.Runtime.Serialization;
 
 namespace Zad2Serializer.ObjectModel
 {
+
     public class A : ABC, ISerializable
     {
         public string Name { get; set; }

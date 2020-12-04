@@ -1,20 +1,25 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Xml;
-using System.Runtime.Serialization;
+using Newtonsoft.Json;
+
 
 namespace Zad2Serializer.Serialization
 {
-    class XMLSerialization<T>
+    public class XMLSerialization<T>
     {
         private string _fileName;
         private T _obj;
-
+        private JsonSerializerSettings _jsonSettings;
 
         public XMLSerialization(string fileName, T obj)
         {
             _fileName = fileName;
             _obj = obj;
+            _jsonSettings = new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.All,
+                PreserveReferencesHandling = PreserveReferencesHandling.All
+            };
         }
 
         public void Serialize()
@@ -24,22 +29,28 @@ namespace Zad2Serializer.Serialization
                 File.Delete(_fileName);
             }
 
-            XmlWriter writer = XmlWriter.Create(_fileName, new XmlWriterSettings() { Indent = true });
-            DataContractSerializer ser = new DataContractSerializer(typeof(T));
-            ser.WriteObject(writer, _obj);
-            writer.Close();
+            string json = JsonConvert.SerializeObject(_obj, Newtonsoft.Json.Formatting.Indented, _jsonSettings);
+            XmlDocument doc = (XmlDocument)JsonConvert.DeserializeXmlNode(json, "root");
+
+            doc.Save(_fileName);
+
         }
 
-        public T Deserilize()
+        public T Deserialize()
         {
-            FileStream fs = new FileStream(_fileName, FileMode.Open);
-            XmlDictionaryReader reader = XmlDictionaryReader.CreateTextReader(fs, new XmlDictionaryReaderQuotas());
-            DataContractSerializer ser = new DataContractSerializer(typeof(T));
+            if (!File.Exists(_fileName))
+            {
+                throw new FileNotFoundException();
+            }
 
-            T deserializedObject = (T)ser.ReadObject(reader, true);
-            reader.Close();
-            fs.Close();
+            string xml = File.ReadAllText(_fileName);
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(xml);
+
+            string jsonText = JsonConvert.SerializeXmlNode(doc, Newtonsoft.Json.Formatting.Indented, true);
+            T deserializedObject = JsonConvert.DeserializeObject<T>(jsonText, _jsonSettings);
             return deserializedObject;
+
         }
     }
 }

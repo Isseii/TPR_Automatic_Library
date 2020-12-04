@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Zad2Serializer.ObjectModel
 {
+
     public class ABC
     {
         public override string ToString()

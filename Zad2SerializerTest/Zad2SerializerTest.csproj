@@ -56,6 +56,7 @@
     <Compile Include="JSONSerializerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CustomSerializerTest.cs" />
+    <Compile Include="XMLSerializerTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
