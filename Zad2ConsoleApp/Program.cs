@@ -5,6 +5,10 @@ using Zad2Serializer.Serialization;
 using System.Xml.XPath;
 using System.Xml.Xsl;
 using System.Xml;
+using Newtonsoft.Json.Schema;
+using Newtonsoft.Json.Schema.Generation;
+using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
 
 namespace Zad2ConsoleApp
 {
@@ -58,6 +62,7 @@ namespace Zad2ConsoleApp
             int y = 10;
 
 
+
             A a;
             B b;
             C c;
@@ -96,13 +101,30 @@ namespace Zad2ConsoleApp
                         }                
                     case 2:
                         {
+
+                            JSchemaGenerator generator = new JSchemaGenerator();
+                        
+                            JSchema schema = generator.Generate(typeof(A));
+
                             string fileName = "AConsoleJsonDesTmp.json";
                             JSONSerialization<ABC> serialize = new JSONSerialization<ABC>(fileName, holder);
                             serialize.Serialize();
                             JSONSerialization<ABC> tmp = new JSONSerialization<ABC>(fileName, holder);
-                            ABC desResult = tmp.Deserialize();
-                            Console.WriteLine("Object " + holder.GetType().Name + " deserialized from JSON format" + "\n");
-                            Console.WriteLine(desResult.ToString());
+                            string jsonText = File.ReadAllText(fileName);
+                            JObject schemaTest = JObject.Parse(jsonText);
+
+                            IList<string> errorMessages;
+                            bool valid = schemaTest.IsValid(schema, out errorMessages); 
+                            if (valid)
+                            {
+                                ABC desResult = tmp.Deserialize();
+                                Console.WriteLine("Object " + holder.GetType().Name + " deserialized from JSON format" + "\n");
+                                Console.WriteLine(desResult.ToString());
+                                break;
+                            }
+
+                            Console.WriteLine(errorMessages);
+                            Console.WriteLine("Validation Error");
                             break;
                         }
                     case 3:
