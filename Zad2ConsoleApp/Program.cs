@@ -2,7 +2,9 @@
 using System.IO;
 using Zad2Serializer.ObjectModel;
 using Zad2Serializer.Serialization;
-using System.Runtime.Serialization;
+using System.Xml.XPath;
+using System.Xml.Xsl;
+using System.Xml;
 
 namespace Zad2ConsoleApp
 {
@@ -72,6 +74,9 @@ namespace Zad2ConsoleApp
                 Console.WriteLine("Custom serialization (3)");
                 Console.WriteLine("Custom deserialization (4)");
                 Console.WriteLine("Change type from " + holder.GetType().Name +" (5)");
+                Console.WriteLine("XML serialization (6)");
+                Console.WriteLine("XML deserialization (7)");
+                Console.WriteLine("XML to XHTML transformation (8)");
                 Console.WriteLine("Quit (0)");
                 x = Convert.ToInt32(Console.ReadLine());
                 switch(x){
@@ -89,7 +94,7 @@ namespace Zad2ConsoleApp
                             serialize.Serialize();
                             JSONSerialization<ABC> tmp = new JSONSerialization<ABC>(fileName, holder);
                             ABC desResult = tmp.Deserialize();
-                            Console.WriteLine("Object " + holder.GetType().Name + " deserialized fromt JSON format" + "\n");
+                            Console.WriteLine("Object " + holder.GetType().Name + " deserialized from JSON format" + "\n");
                             Console.WriteLine(desResult.ToString());
                             break;
                         }
@@ -118,8 +123,50 @@ namespace Zad2ConsoleApp
                             Console.WriteLine("Object type changed to " + holder.GetType().Name);
                             break;
                         }
-     
-                    }
+                    case 6:
+                        {
+                            XMLSerialization<ABC> serialize = new XMLSerialization<ABC>("AConsoleResultXML.xml", holder);
+                            serialize.Serialize();
+                            Console.WriteLine("Object " + holder.GetType().Name + " serialized to XML format" + "\n");
+                            break;
+                        }
+                    case 7:
+                        {
+                            string fileName = "AConsoleResultXML.xml";
+                            XMLSerialization<ABC> serialize = new XMLSerialization<ABC>(fileName, holder);
+                            serialize.Serialize();
+                            XMLSerialization<ABC> tmp = new XMLSerialization<ABC>(fileName, holder);
+                            ABC desResult = tmp.Deserialize();
+                            Console.WriteLine("Object " + holder.GetType().Name + " deserialized from XML format" + "\n");
+                            Console.WriteLine(desResult.ToString());
+                            break;
+                        }
+                    case 8:
+                        {
+                            string fileName = "AConsoleResultXML.xml";
+                            if (!File.Exists(fileName))
+                            {
+                                Console.WriteLine("Nie odnaleziono pliku xml.");
+                                break;
+                            }
+
+                            XPathDocument myXPathDoc = new XPathDocument(fileName);
+                            XslCompiledTransform myXslTrans = new XslCompiledTransform();
+                            string xsltFilePath = "toxhtml.xslt";
+                            if (!File.Exists(xsltFilePath))
+                            {
+                                Console.WriteLine("Nie odnaleziono pliku xslt.");
+                                break;
+                            }
+
+                            myXslTrans.Load(xsltFilePath);
+                            XmlTextWriter myWriter = new XmlTextWriter("result.xhtml", null);
+                            myXslTrans.Transform(myXPathDoc, null, myWriter);
+
+                            Console.WriteLine("Stworzono plik result.xhtml");
+                            break;
+                        }
+                }
                 Console.WriteLine("\n" + "Press Key to Continue");
                 Console.ReadKey();
 
