@@ -12,6 +12,9 @@ namespace Zad2ConsoleApp
     {
         static ABC changeType(A a, B b, C c)
         {
+
+          
+
             Console.WriteLine("Choose type A / B / C" + "\n");
             char x = Convert.ToChar(Console.ReadLine());
             switch (x)
@@ -51,11 +54,15 @@ namespace Zad2ConsoleApp
 
         static void Main(string[] args)
         {
+
+            int y = 10;
+
+
             A a;
             B b;
             C c;
 
-            a = new A("Dominik", "Karski", 2137, new DateTime(2019, 12, 1), null);
+            a = new A("Dominik", "Karski", 3333, new DateTime(2019, 12, 1), null);
             b = new B("Sebastian", "Kujawski", 9669, new DateTime(2019, 10, 1), null);
             c = new C("Winston", "Churchill", 5321, new DateTime(2020, 1, 2), null);
 
@@ -143,6 +150,8 @@ namespace Zad2ConsoleApp
                         }
                     case 8:
                         {
+                            Console.WriteLine("Level of recursion: ");
+                            y = Convert.ToInt32(Console.ReadLine());
                             string fileName = "AConsoleResultXML.xml";
                             if (!File.Exists(fileName))
                             {
@@ -151,7 +160,13 @@ namespace Zad2ConsoleApp
                             }
 
                             XPathDocument myXPathDoc = new XPathDocument(fileName);
-                            XslCompiledTransform myXslTrans = new XslCompiledTransform();
+
+                          
+                            string xsltCode = "<?xml version='1.0' encoding='UTF-8'?><xsl:stylesheet version ='1.0' xmlns:xsl='http://www.w3.org/1999/XSL/Transform' xmlns:json='http://james.newtonking.com/projects/json'><xsl:output method = 'xml' doctype-system='http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd' doctype-public='-//W3C//DTD XHTML 1.0 Transitional//EN' indent='yes' omit-xml-declaration='yes'/><xsl:template name = 'writeobj' ><xsl:param name = 'obj' select='root'/>	<xsl:param name = 'count' select='1'/><xsl:choose><xsl:when test = '$obj/@json:ref' ><xsl:call-template name = 'writeobj' > <xsl:with-param name = 'obj' select='root'/><xsl:with-param name = 'count' select='$count'/></xsl:call-template></xsl:when><xsl:otherwise><xsl:if test='$count > 0'><tr xmlns = 'http://www.w3.org/1999/xhtml' xml:lang='pl' lang='pl' >Type: <xsl:value-of select = '$obj/@json:type' />Name: <xsl:value-of select = '$obj/Name' />LastName: <xsl:value-of select = '$obj/LastName' />Number: <xsl:value-of select = '$obj/Number' />Date: <xsl:value-of select = '$obj/Date'/><xsl:if test='$count > 1'>ObjRef: </xsl:if></tr> <xsl:if test='$obj/ObjA'><xsl:call-template name = 'writeobj' ><xsl:with-param name = 'obj' select='$obj/ObjA'/><xsl:with-param name = 'count' select='$count - 1'/></xsl:call-template></xsl:if><xsl:if test='$obj/ObjB'><xsl:call-template name = 'writeobj' ><xsl:with-param name = 'obj' select='$obj/ObjB'/><xsl:with-param name = 'count' select='$count - 1'/></xsl:call-template></xsl:if><xsl:if test='$obj/ObjC'><xsl:call-template name = 'writeobj' ><xsl:with-param name = 'obj' select='$obj/ObjC'/><xsl:with-param name ='count' select='$count - 1'/></xsl:call-template> </xsl:if></xsl:if></xsl:otherwise></xsl:choose></xsl:template> <xsl:template match = '/' ><html xmlns='http://www.w3.org/1999/xhtml' xml:lang='pl' lang='pl'><head> <title>Wynik serializacji</title> <style type = 'text/css' >mh2{,font - family: Helvetica;,margin - left: 2 %;,}   </style> </head>  <body style = 'background-color:#2c2f33; color:#7289da' ><table style='background-color:#222222'  xmlns='http://www.w3.org/1999/xhtml' xml:lang='pl' lang='pl' ><xsl:call-template name = 'writeobj' ><xsl:with-param name = 'obj' select='root'/><xsl:with-param name = 'count' select='"+y+"'/></xsl:call-template></table> </body> </html></xsl:template>	</xsl:stylesheet>";
+
+                            XslCompiledTransform objXslTrans = new XslCompiledTransform();
+                            objXslTrans.Load(new XmlTextReader(new StringReader(xsltCode)));
+
                             string xsltFilePath = "toxhtml.xslt";
                             if (!File.Exists(xsltFilePath))
                             {
@@ -159,9 +174,9 @@ namespace Zad2ConsoleApp
                                 break;
                             }
 
-                            myXslTrans.Load(xsltFilePath);
                             XmlTextWriter myWriter = new XmlTextWriter("result.xhtml", null);
-                            myXslTrans.Transform(myXPathDoc, null, myWriter);
+                            objXslTrans.Transform(myXPathDoc, null, myWriter);
+              
 
                             Console.WriteLine("Stworzono plik result.xhtml");
                             break;

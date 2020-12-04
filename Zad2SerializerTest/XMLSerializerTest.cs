@@ -32,6 +32,7 @@ namespace Zad2SerializerTest
             XMLSerialization<A> serializer = new XMLSerialization<A>(fileName, a);
             serializer.Serialize();
 
+
             string serializedContent = File.ReadAllText(fileName);
             Assert.AreEqual(serializedContent, @"<root xmlns:json=""http://james.newtonking.com/projects/json"" json:id=""1"" json:type=""Zad2Serializer.ObjectModel.A, Zad2Serializer"">
   <Name>Dominik</Name>
