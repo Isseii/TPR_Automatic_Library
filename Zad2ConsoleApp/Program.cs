@@ -1076,6 +1076,7 @@ namespace Zad2ConsoleApp
                             XMLSerialization<ABC> serialize = new XMLSerialization<ABC>(fileName, holder);
                             serialize.Serialize();
                             XMLSerialization<ABC> tmp = new XMLSerialization<ABC>(fileName, holder);
+                            tmp.Validation = true;
                             ABC desResult = tmp.Deserialize();
                             Console.WriteLine("Object " + holder.GetType().Name + " deserialized from XML format" + "\n");
                             Console.WriteLine(desResult.ToString());
