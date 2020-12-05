@@ -94,9 +94,9 @@ namespace Zad2ConsoleApp
                 switch(x){
                     case 1:
                         {
-                            JSONSerialization<ABC> serialize = new JSONSerialization<ABC>("AConsoleResultJSON.json", holder);
+                            JSONSerialization<ABC> serialize = new JSONSerialization<ABC>("ABCConsoleResultJSON.json", holder);
                             serialize.Serialize();
-                            Console.WriteLine("Object " + holder.GetType().Name + " serialized to JSON format" + "\n");
+                            Console.WriteLine("Object " + holder.GetType().Name + " serialized to JSON format " + "\n");
                             break;
                         }                
                     case 2:
@@ -1014,7 +1014,7 @@ namespace Zad2ConsoleApp
 
                             JSchema schema = JSchema.Parse(schemastr);
 
-                            string fileName = "AConsoleJsonDesTmp.json";
+                            string fileName = "ABCConsoleJsonDesTmp.json";
                             JSONSerialization<ABC> serialize = new JSONSerialization<ABC>(fileName, holder);
                             serialize.Serialize();
                             string jsonText = File.ReadAllText(fileName);
@@ -1028,6 +1028,7 @@ namespace Zad2ConsoleApp
                                 ABC desResult = serialize.Deserialize();
                                 Console.WriteLine("Object " + holder.GetType().Name + " deserialized from JSON format" + "\n");
                                 Console.WriteLine(desResult.ToString());
+                                File.Delete(fileName);
                                 break;
                             }
                             foreach (var e in errorMessages)
@@ -1036,25 +1037,25 @@ namespace Zad2ConsoleApp
                             }
                             
                             Console.WriteLine("Validation Error");
+                            File.Delete(fileName);
                             break;
                         }
                     case 3:
                         {
-                            CustomSerialization<ABC> serialize = new CustomSerialization<ABC>("AConsoleSerializationResultCustom.txt", holder);
+                            CustomSerialization<ABC> serialize = new CustomSerialization<ABC>("ABCConsoleSerializationResultCustom.txt", holder);
                             serialize.Serialize();
-                            Console.WriteLine("Object " + holder.GetType().Name + "serialized to custom format" + "\n");
+                            Console.WriteLine("Object " + holder.GetType().Name + " serialized to custom format " + "\n");
                             break;
                         }
                     case 4:
                         {
-                            string fileName = "AConsoleCustomDesTmp.txt";
+                            string fileName = "ABCConsoleCustomDesTmp.txt";
                             CustomSerialization<ABC> serialize = new CustomSerialization<ABC>(fileName, holder);
-                            serialize.Serialize();
-                            CustomSerialization<ABC> tmp = new CustomSerialization<ABC>(fileName, holder);
-                            ABC desResult = tmp.Deserialize();
+                            serialize.Serialize();    
+                            ABC desResult = serialize.Deserialize();
                             Console.WriteLine("Object " + holder.GetType().Name +" deserialized from Custom format" + "\n");
                             Console.WriteLine(desResult.ToString());
-
+                            File.Delete(fileName);
                             break;
                         }
                     case 5:
@@ -1065,28 +1066,29 @@ namespace Zad2ConsoleApp
                         }
                     case 6:
                         {
-                            XMLSerialization<ABC> serialize = new XMLSerialization<ABC>("AConsoleResultXML.xml", holder);
+                            XMLSerialization<ABC> serialize = new XMLSerialization<ABC>("ABCConsoleResultXML.xml", holder);
                             serialize.Serialize();
                             Console.WriteLine("Object " + holder.GetType().Name + " serialized to XML format" + "\n");
                             break;
                         }
                     case 7:
                         {
-                            string fileName = "AConsoleResultXML.xml";
+                            
+                            string fileName = "ABCDeserializeXMLtmp.xml";
                             XMLSerialization<ABC> serialize = new XMLSerialization<ABC>(fileName, holder);
                             serialize.Serialize();
-                            XMLSerialization<ABC> tmp = new XMLSerialization<ABC>(fileName, holder);
-                            tmp.Validation = true;
-                            ABC desResult = tmp.Deserialize();
+                            serialize.Validation = true;
+                            ABC desResult = serialize.Deserialize();
                             Console.WriteLine("Object " + holder.GetType().Name + " deserialized from XML format" + "\n");
                             Console.WriteLine(desResult.ToString());
+                            File.Delete(fileName);
                             break;
                         }
                     case 8:
                         {
                             Console.WriteLine("Level of recursion: ");
                             y = Convert.ToInt32(Console.ReadLine());
-                            string fileName = "AConsoleResultXML.xml";
+                            string fileName = "ABCConsoleResultXML.xml";
                             if (!File.Exists(fileName))
                             {
                                 Console.WriteLine("Nie odnaleziono pliku xml.");
@@ -1100,13 +1102,6 @@ namespace Zad2ConsoleApp
 
                             XslCompiledTransform objXslTrans = new XslCompiledTransform();
                             objXslTrans.Load(new XmlTextReader(new StringReader(xsltCode)));
-
-                            string xsltFilePath = "toxhtml.xslt";
-                            if (!File.Exists(xsltFilePath))
-                            {
-                                Console.WriteLine("Nie odnaleziono pliku xslt.");
-                                break;
-                            }
 
                             XmlTextWriter myWriter = new XmlTextWriter("result.xhtml", null);
                             objXslTrans.Transform(myXPathDoc, null, myWriter);
