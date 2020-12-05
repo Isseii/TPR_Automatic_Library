@@ -50,7 +50,6 @@ namespace Zad2Serializer.Serialization
             string jsonText = JsonConvert.SerializeXmlNode(doc, Newtonsoft.Json.Formatting.Indented, true);
             T deserializedObject = JsonConvert.DeserializeObject<T>(jsonText, _jsonSettings);
             return deserializedObject;
-
         }
     }
 }
