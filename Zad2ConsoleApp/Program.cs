@@ -1105,7 +1105,7 @@ namespace Zad2ConsoleApp
 
                             XmlTextWriter myWriter = new XmlTextWriter("result.xhtml", null);
                             objXslTrans.Transform(myXPathDoc, null, myWriter);
-              
+                            myWriter.Close();
 
                             Console.WriteLine("Stworzono plik result.xhtml");
                             break;
