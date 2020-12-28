@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Zad3DatabaseLINQ
+namespace Zad3DatabaseLINQ.MyProduct
 {
     class MyProduct : Product
     {

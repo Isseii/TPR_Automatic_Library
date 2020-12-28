@@ -66,7 +66,6 @@
     </Compile>
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="MyProduct\MyProduct.cs" />
-    <Compile Include="MyProduct\MyProductDataContext.cs" />
     <Compile Include="MyProduct\MyProductRepository.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

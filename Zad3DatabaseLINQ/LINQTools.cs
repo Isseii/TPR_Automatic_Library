@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Zad3DatabaseLINQ.MyProduct
+namespace Zad3DatabaseLINQ
 {
-    class MyProductDataContext
+    class LINQTools
     {
-
-
     }
 }
