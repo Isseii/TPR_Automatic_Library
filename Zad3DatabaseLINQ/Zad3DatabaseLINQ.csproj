@@ -64,8 +64,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataBaseTables.dbml</DependentUpon>
     </Compile>
-    <Compile Include="MyProduct.cs" />
-    <Compile Include="ProductRepository.cs" />
+    <Compile Include="MyProduct\MyProduct.cs" />
+    <Compile Include="MyProduct\MyProductDataContext.cs" />
+    <Compile Include="MyProduct\MyProductRepository.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -73,6 +74,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="QueryTools.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -104,14 +106,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="data.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="data_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>data.mdf</DependentUpon>
-    </Content>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
