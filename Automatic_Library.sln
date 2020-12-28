@@ -26,6 +26,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zad2ConsoleApp", "Zad2Conso
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zad3DatabaseLINQ", "Zad3DatabaseLINQ\Zad3DatabaseLINQ.csproj", "{F43F2D92-FC1D-4965-B3DF-088CCC91A317}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zad3DatabaseLINQTest", "Zad3DatabaseLINQTest\Zad3DatabaseLINQTest.csproj", "{3F2E73CD-6181-4917-8302-E1B3BA0BBA5E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F43F2D92-FC1D-4965-B3DF-088CCC91A317} = {F43F2D92-FC1D-4965-B3DF-088CCC91A317}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +61,10 @@ Global
 		{F43F2D92-FC1D-4965-B3DF-088CCC91A317}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F43F2D92-FC1D-4965-B3DF-088CCC91A317}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F43F2D92-FC1D-4965-B3DF-088CCC91A317}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F2E73CD-6181-4917-8302-E1B3BA0BBA5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F2E73CD-6181-4917-8302-E1B3BA0BBA5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F2E73CD-6181-4917-8302-E1B3BA0BBA5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F2E73CD-6181-4917-8302-E1B3BA0BBA5E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

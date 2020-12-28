@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Zad3DatabaseLINQ.MyProduct
 {
-    class MyProduct : Product
+    public class MyProduct : Product
     {
         public MyProduct(Product product)
         {

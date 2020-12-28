@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace Zad3DatabaseLINQ
 {
-    class QueryTools
+    public class QueryTools
     {
+
 
         public static List<Product> GetProductsByName(string namePart)
         {

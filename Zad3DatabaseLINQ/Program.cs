@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Zad3DatabaseLINQ
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {

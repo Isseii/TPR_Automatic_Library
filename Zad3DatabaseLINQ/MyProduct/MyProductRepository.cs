@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Zad3DatabaseLINQ.MyProduct
 {
-    class ProductRepository
+    public class MyProductRepository
     {
-        public static List<MyProduct> myProducts;
+        public List<MyProduct> myProducts;
 
-        public ProductRepository(DataBaseTablesDataContext dataContext)
+        public MyProductRepository(DataBaseTablesDataContext dataContext)
         {
             myProducts = dataContext.Products.AsEnumerable().Select(product => new MyProduct(product)).ToList();
         }
