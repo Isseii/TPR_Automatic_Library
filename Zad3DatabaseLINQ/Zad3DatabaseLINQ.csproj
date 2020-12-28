@@ -64,6 +64,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataBaseTables.dbml</DependentUpon>
     </Compile>
+    <Compile Include="ExtensionMethods.cs" />
     <Compile Include="MyProduct\MyProduct.cs" />
     <Compile Include="MyProduct\MyProductDataContext.cs" />
     <Compile Include="MyProduct\MyProductRepository.cs" />
