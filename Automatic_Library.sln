@@ -24,7 +24,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zad2SerializerTest", "Zad2S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zad2ConsoleApp", "Zad2ConsoleApp\Zad2ConsoleApp.csproj", "{F93A7AA3-AA0C-4359-BD07-C5934B150375}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zad3DatabaseLINQ", "DatabaseLINQ\Zad3DatabaseLINQ.csproj", "{F43F2D92-FC1D-4965-B3DF-088CCC91A317}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zad3DatabaseLINQ", "Zad3DatabaseLINQ\Zad3DatabaseLINQ.csproj", "{F43F2D92-FC1D-4965-B3DF-088CCC91A317}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
