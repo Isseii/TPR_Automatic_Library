@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="adventureData" Class="DataBaseTablesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\adventureData.mdf;Integrated Security=True;Connect Timeout=30" SettingsObjectName="Zad3DatabaseLINQ.Properties.Settings" SettingsPropertyName="adventureDataConnectionString" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="data" Class="DataBaseTablesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\data.mdf;Integrated Security=True;Connect Timeout=30" SettingsObjectName="Zad3DatabaseLINQ.Properties.Settings" SettingsPropertyName="dataConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="Production.Product" Member="Products">
     <Type Name="Product">
       <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />

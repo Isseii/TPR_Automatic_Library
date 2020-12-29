@@ -90,7 +90,7 @@ namespace Zad3DatabaseLINQ
             {
                 Table<Product> productsTable = dataContext.GetTable<Product>();
                 List<Product> products = (from product in productsTable
-                                          where product.ProductSubcategory.ProductCategory.Name.Equals(categoryName)
+                                          where product.ProductSubcategory != null && product.ProductSubcategory.ProductCategory.Name.Equals(categoryName)
                                           select product).Take(n).ToList();
                 return products;
             }

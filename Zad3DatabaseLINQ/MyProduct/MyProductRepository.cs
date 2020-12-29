@@ -37,8 +37,9 @@ namespace Zad3DatabaseLINQ.MyProduct
         public List<MyProduct> GetNProductsFromCategory(string categoryName, int n)
         {
             List<MyProduct> result = (from product in myProducts
-                                    orderby product.ProductSubcategory.Name.Equals(categoryName)
-                                    select product).Take(n).ToList();
+                                      where product.ProductSubcategory != null && product.ProductSubcategory.ProductCategory.Name.Equals(categoryName)
+                                      orderby product.ProductSubcategory.Name
+                                      select product).Take(n).ToList();
             return result;
         }
     }
