@@ -59,24 +59,37 @@ namespace Zad3DatabaseLINQ.Tests
             var tmp = QueryTools.GetProductsWithNRecentReviews(2);
 
             Assert.AreEqual(tmp.Count, 1);
+            Assert.AreEqual(tmp[0].ProductID, 937);
         }
 
         [TestMethod()]
         public void GetNRecentlyReviewedProductsTest()
         {
-      
+            var tmp = QueryTools.GetNRecentlyReviewedProducts(5);
+
+            Assert.AreEqual(tmp.Count, 4);
+            Assert.AreEqual(tmp[0].ProductID, 937);
         }
 
         [TestMethod()]
         public void GetNProductsFromCategoryTest()
         {
-      
+            var tmp = QueryTools.GetNProductsFromCategory("Clothing", 3);
+
+            Assert.AreEqual(tmp.Count, 3);
+            Assert.AreEqual(tmp[0].Name, "Men's Bib-Shorts, S");
         }
 
         [TestMethod()]
         public void GetTotalStandardCostByCategoryTest()
         {
-    
+            ProductCategory category = new ProductCategory();
+            category.Name = "clothing";
+
+            var tmp = QueryTools.GetTotalStandardCostByCategory(category);
+
+            Assert.AreEqual(tmp, 868);
+
         }
     }
 }
