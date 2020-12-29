@@ -29,7 +29,7 @@ namespace Zad3DatabaseLINQ
         }
         public static List<Product> GetNPageWithXResultsQuery(this List<Product> products, int page, int results)
         {
-            return (from product in products.Skip(page - 1).Take(results) select product).ToList();
+            return (from product in products.Skip((page - 1) * results).Take(results) select product).ToList();
         }
          
 
