@@ -9,7 +9,7 @@ namespace Zad4Database.MyCategory
 {
     public class MyCategoryRepository : IMyCategoryRepository
     {
-        public List<MyCategory> myCategories;
+        private List<MyCategory> myCategories;
 
         public MyCategoryRepository(DataBaseTablesDataContext dataContext)
         {
@@ -25,6 +25,15 @@ namespace Zad4Database.MyCategory
             return output.ToList();
         }
 
+        public List<MyCategory> GetMyProductCategoryById(int id)
+        {
+            var output = from category in myCategories
+                         where category.ProductCategoryID.Equals(id)
+                         select category;
+
+            return output.ToList();
+        }
+
 
         public List<MyCategory> GetAllProductCategories()
         {
@@ -34,11 +43,11 @@ namespace Zad4Database.MyCategory
         }
 
 
-        public void AddProductCategory(ProductCategory productCategory)
+        public void AddProductCategory(MyCategory myCategory)
         {
             using (DataBaseTablesDataContext dataContext = new DataBaseTablesDataContext())
             {
-                dataContext.ProductCategory.InsertOnSubmit(productCategory);
+                dataContext.ProductCategory.InsertOnSubmit(myCategory);
                 dataContext.SubmitChanges();
             }
         }

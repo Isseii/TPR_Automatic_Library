@@ -33,6 +33,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zad3DatabaseLINQTest", "Zad
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zad4Database", "Zad4Database\Zad4Database.csproj", "{D9993956-8CC4-4473-883B-0391951A5AB9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zad4Service", "Zad4Service\Zad4Service.csproj", "{7A471E21-3B7B-4D7E-BF2C-849297C3900F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D9993956-8CC4-4473-883B-0391951A5AB9} = {D9993956-8CC4-4473-883B-0391951A5AB9}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +76,10 @@ Global
 		{D9993956-8CC4-4473-883B-0391951A5AB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9993956-8CC4-4473-883B-0391951A5AB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9993956-8CC4-4473-883B-0391951A5AB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A471E21-3B7B-4D7E-BF2C-849297C3900F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A471E21-3B7B-4D7E-BF2C-849297C3900F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A471E21-3B7B-4D7E-BF2C-849297C3900F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A471E21-3B7B-4D7E-BF2C-849297C3900F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
