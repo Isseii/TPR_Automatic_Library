@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Zad4Database.MyProduct
+namespace Zad4Database.MyCategory
 {
-    public class MyProductRepository
+    public class MyCategoryRepository : IMyCategoryRepository
     {
         public List<MyCategory> myCategories;
 
-        public MyProductRepository(DataBaseTablesDataContext dataContext)
+        public MyCategoryRepository(DataBaseTablesDataContext dataContext)
         {
             myCategories = dataContext.ProductCategory.AsEnumerable().Select(category => new MyCategory(category)).ToList();
         }
@@ -28,7 +28,7 @@ namespace Zad4Database.MyProduct
 
         public List<MyCategory> GetAllProductCategories()
         {
-            var output = from category in myCategories  select category;
+            var output = from category in myCategories select category;
 
             return output.ToList();
         }

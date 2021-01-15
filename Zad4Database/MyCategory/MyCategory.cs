@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Zad4Database.MyProduct
+namespace Zad4Database.MyCategory
 {
     public class MyCategory : ProductCategory
     {
