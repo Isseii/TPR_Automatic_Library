@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7A471E21-3B7B-4D7E-BF2C-849297C3900F}</ProjectGuid>
+    <ProjectGuid>{193FA947-B96C-49EE-B221-A72AE246921D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Zad4Service</RootNamespace>
-    <AssemblyName>Zad4Service</AssemblyName>
+    <RootNamespace>Zad4Model</RootNamespace>
+    <AssemblyName>Zad4Model</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -41,15 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IMyCategoryService.cs" />
+    <Compile Include="Model.cs" />
     <Compile Include="MyCategory.cs" />
-    <Compile Include="MyCategoryService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Zad4Database\Zad4Database.csproj">
-      <Project>{d9993956-8cc4-4473-883b-0391951a5ab9}</Project>
-      <Name>Zad4Database</Name>
+    <ProjectReference Include="..\Zad4Service\Zad4Service.csproj">
+      <Project>{7a471e21-3b7b-4d7e-bf2c-849297c3900f}</Project>
+      <Name>Zad4Service</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

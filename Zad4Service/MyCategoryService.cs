@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Zad4Database;
 using Zad4Database.MyCategory;
 
@@ -9,9 +10,10 @@ namespace Zad4Service
     {
         private IMyCategoryRepository myCategoryRepository;
 
-        public MyCategoryService(IMyCategoryRepository myCategoryRepository)
+
+        public MyCategoryService()
         {
-            this.myCategoryRepository = myCategoryRepository;
+            this.myCategoryRepository = new MyCategoryRepository(new DataBaseTablesDataContext());
         }
 
         public void AddProductCategory(String name, String date)
@@ -19,7 +21,7 @@ namespace Zad4Service
             ProductCategory category = new ProductCategory();
             category.Name = name;
             category.ModifiedDate = DateTime.Parse(date);
-            myCategoryRepository.AddProductCategory(new MyCategory(category));
+            myCategoryRepository.AddProductCategory(new Zad4Database.MyCategory.MyCategory(category));
         }
         public void DeleteProductCategory(int id)
         {
@@ -28,12 +30,12 @@ namespace Zad4Service
 
         public List<MyCategory> GetAllProductCategories()
         {
-            return myCategoryRepository.GetAllProductCategories();
+            return myCategoryRepository.GetAllProductCategories().Select(c => new MyCategory(c.ProductCategoryID, c.Name, c.ModifiedDate)).ToList(); 
         }
 
         public List<MyCategory> GetMyProductCategoryByName(string name)
         {
-            return myCategoryRepository.GetMyProductCategoryByName(name);
+            return myCategoryRepository.GetMyProductCategoryByName(name).Select(c =>  new MyCategory(c.ProductCategoryID, c.Name, c.ModifiedDate)).ToList();
         }
 
         public void UpdateProductCategory(string name, int id)
@@ -43,7 +45,7 @@ namespace Zad4Service
 
         public List<MyCategory> GetMyProductCategoryById(int id)
         {
-            return myCategoryRepository.GetMyProductCategoryById(id);
+            return myCategoryRepository.GetMyProductCategoryById(id).Select(c => new MyCategory(c.ProductCategoryID, c.Name, c.ModifiedDate)).ToList();
         }
     }
 }
