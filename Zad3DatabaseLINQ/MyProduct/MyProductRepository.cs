@@ -11,6 +11,8 @@ namespace Zad3DatabaseLINQ.MyProduct
     {
         public List<MyProduct> myProducts;
 
+        private ProductionDataContext db = new ProductionDataContext();
+
         public MyProductRepository(DataBaseTablesDataContext dataContext)
         {
             myProducts = dataContext.Products.AsEnumerable().Select(product => new MyProduct(product)).ToList();

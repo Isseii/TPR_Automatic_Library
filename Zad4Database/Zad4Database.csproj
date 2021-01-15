@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F43F2D92-FC1D-4965-B3DF-088CCC91A317}</ProjectGuid>
+    <ProjectGuid>{D9993956-8CC4-4473-883B-0391951A5AB9}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Zad3DatabaseLINQ</RootNamespace>
-    <AssemblyName>Zad3DatabaseLINQ</AssemblyName>
+    <RootNamespace>Zad4Database</RootNamespace>
+    <AssemblyName>Zad4Database</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -48,9 +48,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System">
-      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
-    </Reference>
+    <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Xml.Linq" />
@@ -66,8 +64,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataBaseTables.dbml</DependentUpon>
     </Compile>
-    <Compile Include="ExtensionMethods.cs" />
-    <Compile Include="MyProduct\MyProduct.cs" />
+    <Compile Include="MyProduct\MyCategory.cs" />
     <Compile Include="MyProduct\MyProductRepository.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -76,7 +73,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="QueryTools.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -109,12 +105,12 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="adventureData.mdf">
+    <Content Include="adventureDataZad4.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="adventureData_log.ldf">
+    <Content Include="adventureDataZad4_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>adventureData.mdf</DependentUpon>
+      <DependentUpon>adventureDataZad4.mdf</DependentUpon>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
