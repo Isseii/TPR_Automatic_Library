@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Zad4ViewModel;
 
 namespace Zad4View
 {
@@ -23,6 +24,7 @@ namespace Zad4View
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new ViewModel();
         }
     }
 }

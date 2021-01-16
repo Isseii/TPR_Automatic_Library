@@ -7,13 +7,13 @@ using Zad4Service;
 
 namespace Zad4Model
 {
-    public class Model
+    public class Model : IModel
     {
-        IMyCategoryService service;
+        private IMyCategoryService service;
 
-        public Model(IMyCategoryService serviceInterface)
+        public Model()
         {
-            service = serviceInterface;
+            service = new MyCategoryService();
         }
 
         public void AddProductCategory(string name, string date)
@@ -29,7 +29,7 @@ namespace Zad4Model
             return service.GetAllProductCategories().Select(c => new MyCategory(c.Id, c.Name, c.Date)).ToList();
         }
 
-        public List<MyCategory> GetMyProductCategoryById (int id)
+        public List<MyCategory> GetMyProductCategoryById(int id)
         {
             return service.GetMyProductCategoryById(id).Select(c => new MyCategory(c.Id, c.Name, c.Date)).ToList();
         }
@@ -39,7 +39,7 @@ namespace Zad4Model
         }
         public void UpdateProductCategory(string name, int id)
         {
-            service.UpdateProductCategory(name, id); 
+            service.UpdateProductCategory(name, id);
         }
     }
 }

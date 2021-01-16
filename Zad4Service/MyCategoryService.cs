@@ -21,6 +21,7 @@ namespace Zad4Service
             ProductCategory category = new ProductCategory();
             category.Name = name;
             category.ModifiedDate = DateTime.Parse(date);
+            category.rowguid = Guid.NewGuid();
             myCategoryRepository.AddProductCategory(new Zad4Database.MyCategory.MyCategory(category));
         }
         public void DeleteProductCategory(int id)
