@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Zad4Database.MyCategory
 {
-    public class MyCategoryRepository : IMyCategoryRepository
+    public  class MyCategoryRepository : IMyCategoryRepository
     {
         private List<MyCategory> myCategories;
 
@@ -43,12 +43,17 @@ namespace Zad4Database.MyCategory
         }
 
 
-        public void AddProductCategory(MyCategory myCategory)
+        public  void AddProductCategory(MyCategory category)
         {
             using (DataBaseTablesDataContext dataContext = new DataBaseTablesDataContext())
             {
-                dataContext.ProductCategory.InsertOnSubmit(myCategory);
-                dataContext.SubmitChanges();
+                ProductCategory holder = new ProductCategory();
+                holder.Name = category.Name;
+                holder.ModifiedDate = category.ModifiedDate;
+                holder.rowguid = category.rowguid;
+
+                dataContext.ProductCategory.InsertOnSubmit(holder);
+                dataContext.SubmitChanges(ConflictMode.ContinueOnConflict);
             }
         }
 

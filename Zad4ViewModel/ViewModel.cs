@@ -75,7 +75,7 @@ namespace Zad4ViewModel
 
         public void AddMyCategory()
         {
-            MyCategory productCategory = new MyCategory(ID, Name, DateTime.Today);
+            MyCategory productCategory = new MyCategory(0, Name, DateTime.Today);
 
             if (productCategory.Name == null || productCategory.Name == "")
             {
@@ -92,22 +92,23 @@ namespace Zad4ViewModel
 
         public void RemoveMyCategory()
         {
+
             Task.Run(() =>
             {
-                if (ID == 0)
+                if (productCategory.Id == 0)
                 {
                     // TODO
                 }
                 else
                 {
-                    model.DeleteProductCategory(ID);
+                    model.DeleteProductCategory(productCategory.Id);
                 }
             });
         }
 
         public void UpdateMyCategory()
         {
-            if (Name == null || Name == "" || ID == 0)
+            if (Name == null || Name == "" || productCategory.Id == 0)
             {
                 // TODO
             }
@@ -115,7 +116,7 @@ namespace Zad4ViewModel
             {
                 Task.Run(() =>
                 { 
-                    model.UpdateProductCategory(Name, ID);
+                    model.UpdateProductCategory(Name, productCategory.Id);
                 });
             }
         }
@@ -124,7 +125,7 @@ namespace Zad4ViewModel
         private MyCategory productCategory;
         private ObservableCollection<MyCategory> productCategories;
 
-        public string Name { get; set; }
-        public int ID { get; set; }
+        public string Name { get; set; } 
+
     }
 }

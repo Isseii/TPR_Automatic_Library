@@ -4,7 +4,7 @@ namespace Zad4Database.MyCategory
 {
     public interface IMyCategoryRepository
     {
-        void AddProductCategory(MyCategory myCategory);
+        void AddProductCategory(MyCategory category);
         void DeleteProductCategory(int id);
         List<MyCategory> GetAllProductCategories();
         List<MyCategory> GetMyProductCategoryByName(string name);

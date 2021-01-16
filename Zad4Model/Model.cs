@@ -16,9 +16,9 @@ namespace Zad4Model
             service = new MyCategoryService();
         }
 
-        public void AddProductCategory(string name, string date)
+        public void AddProductCategory( string name, string date)
         {
-            service.AddProductCategory(name, date);
+            service.AddProductCategory( name, date);
         }
         public void DeleteProductCategory(int id)
         {
