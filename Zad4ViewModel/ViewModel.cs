@@ -17,10 +17,17 @@ namespace Zad4ViewModel
         public event PropertyChangedEventHandler PropertyChanged;
 
         public ICommand AddCategory { get; set; }
+        public ICommand RemoveCategory { get; set; }
+        public ICommand UpdateCategory { get; set; }
+        public ICommand GetAllData { get; set; }
 
         public ViewModel()
         {
+            Model = new Model();
             AddCategory = new RelayCommand(AddMyCategory);
+            RemoveCategory = new RelayCommand(RemoveMyCategory);
+            UpdateCategory = new RelayCommand(UpdateMyCategory);
+            GetAllData = new RelayCommand(() => Model = new Model());
         }
 
         protected virtual void RaisePropertyChanged([CallerMemberName] string propertyName = null)
@@ -76,7 +83,40 @@ namespace Zad4ViewModel
             }
             else
             {
-                model.AddProductCategory(productCategory.Name, productCategory.Date.ToString());
+                Task.Run(() =>
+                {
+                    model.AddProductCategory(productCategory.Name, productCategory.Date.ToString());
+                });
+            }
+        }
+
+        public void RemoveMyCategory()
+        {
+            Task.Run(() =>
+            {
+                if (ID == 0)
+                {
+                    // TODO
+                }
+                else
+                {
+                    model.DeleteProductCategory(ID);
+                }
+            });
+        }
+
+        public void UpdateMyCategory()
+        {
+            if (Name == null || Name == "" || ID == 0)
+            {
+                // TODO
+            }
+            else
+            {
+                Task.Run(() =>
+                { 
+                    model.UpdateProductCategory(Name, ID);
+                });
             }
         }
 

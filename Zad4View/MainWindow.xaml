@@ -3,10 +3,38 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Zad4View"
+        xmlns:vm="clr-namespace:Zad4ViewModel;assembly=Zad4ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow" Height="700" Width="1000">
+    <Window.DataContext>
+        <vm:ViewModel/>
+    </Window.DataContext>
+    <StackPanel>
+        <Label Content="Product categories:" FontSize="17" FontWeight="Bold" Margin="8,0,8,0"/>
+        <ListBox ItemsSource="{Binding ProductCategories}" SelectedItem="{Binding ProductCategory}" Height="300" Margin="8,0,8,8">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="{Binding Id}" Width="80"/>
+                        <TextBlock Text="{Binding Name}" Width="250"/>
+                        <TextBlock Text="{Binding Date}" Width="250"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Grid Margin="10,0,10,10" Height="89.5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="239*"/>
+                <ColumnDefinition Width="298*"/>
+                <ColumnDefinition Width="298*"/>
+                <ColumnDefinition Width="298*"/>
+                <ColumnDefinition Width="298*"/>
+            </Grid.ColumnDefinitions>
+            <Button BorderThickness="2" Content="Fetch Data" HorizontalAlignment="Center" Command="{Binding GetAllData}" Margin="26,10,20,29.5" Width="134"/>
+            <Button BorderThickness="2" Content="Add category" HorizontalAlignment="Center" Command="{Binding AddCategory}" Margin="44,10,44,29.5" Width="136" Grid.Column="1"/>
+            <Button BorderThickness="2" Content="Remove category" HorizontalAlignment="Center" Command="{Binding RemoveCategory}" Margin="52,10,38,29.5" Width="134" Grid.Column="2"/>
+            <!--<Button BorderThickness="2" Content="Info" HorizontalAlignment="Center" Command="{}" Margin="51,10,39,27.5" Width="134" Grid.Column="4"/>-->
+            <Button BorderThickness="2" Content="Update" HorizontalAlignment="Center" Command="{Binding UpdateCategory}" Margin="63,8,27,29.5" Width="134" Grid.Column="3"/>
+        </Grid>
+    </StackPanel>
 </Window>
