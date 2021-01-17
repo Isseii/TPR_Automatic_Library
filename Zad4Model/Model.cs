@@ -22,7 +22,14 @@ namespace Zad4Model
         }
         public void DeleteProductCategory(int id)
         {
-            service.DeleteProductCategory(id);
+            try
+            {
+                service.DeleteProductCategory(id);
+            }
+            catch (System.Data.SqlClient.SqlException e)
+            {
+                throw e;
+            }
         }
         public List<MyCategory> GetAllProductCategories()
         {

@@ -67,6 +67,29 @@ namespace Zad4ViewModel
             }
         }
 
+        public ObservableCollection<MyCategory> ProductCategoriesInfo
+        {
+            get { return productCategoriesInfo; }
+            set
+            {
+                productCategoriesInfo = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public MyCategory ProductCategoryInfo
+        {
+            get
+            {
+                return productCategoryInfo;
+            }
+            set
+            {
+                productCategoryInfo = value;
+                RaisePropertyChanged();
+            }
+        }
+
         public MyCategory ProductCategory
         {
             get
@@ -101,18 +124,26 @@ namespace Zad4ViewModel
 
         public void RemoveMyCategory()
         {
-
-            Task.Run(() =>
-            {
-                if (productCategory.Id == 0)
+           
+                Task.Run(() =>
                 {
-                    MessageBox.Show("Id field incorrect value", "Error");
-                }
-                else
-                {
-                    model.DeleteProductCategory(productCategory.Id);
-                }
-            });
+                    if (productCategory.Id == 0)
+                    {
+                        MessageBox.Show("Id field incorrect value", "Error");
+                    }
+                    else
+                    {
+                        try
+                        {
+                            model.DeleteProductCategory(productCategory.Id);
+                        }
+                        catch (System.Data.SqlClient.SqlException e)
+                        {
+                            MessageBox.Show(e.ToString(), "Sql forbidden operation");
+                        } 
+                    }
+                });
+           
         }
 
         public void UpdateMyCategory()
@@ -130,21 +161,35 @@ namespace Zad4ViewModel
             }
         }
 
-        public void GetInfo() 
+        public void GetInfo()
         {
             Task.Run(() =>
             {
-                ProductCategories = new ObservableCollection<MyCategory>();
-                ProductCategories.Add(model.GetMyProductCategoryById(productCategory.Id).First());
-                ProductCategory = model.GetMyProductCategoryById(productCategory.Id).First();
+          
+                    if ( productCategory == null)
+                    {
+                        MessageBox.Show("Select any object!", "Error");
 
-            });
-            InfoWindow.ShowInfoWindow(this);
-        }
+                    }
+                    else
+                    {
+                        ProductCategoriesInfo = new ObservableCollection<MyCategory>();
+                        ProductCategoriesInfo.Add(model.GetMyProductCategoryById(productCategory.Id).First());
+                        ProductCategoryInfo = model.GetMyProductCategoryById(productCategory.Id).First();
+
+                        InfoWindow.ShowInfoWindow(this);
+                    }
+           
+              });
+
+
+}
 
         private IModel model;
         private MyCategory productCategory;
         private ObservableCollection<MyCategory> productCategories;
+        private MyCategory productCategoryInfo;
+        private ObservableCollection<MyCategory> productCategoriesInfo;
         public string Name { get; set; } 
 
     }

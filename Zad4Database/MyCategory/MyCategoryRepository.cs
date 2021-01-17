@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Zad4Database.MyCategory
 {
-    public  class MyCategoryRepository : IMyCategoryRepository
+    public class MyCategoryRepository : IMyCategoryRepository
     {
         private List<MyCategory> myCategories;
 
@@ -43,7 +43,7 @@ namespace Zad4Database.MyCategory
         }
 
 
-        public  void AddProductCategory(MyCategory category)
+        public void AddProductCategory(MyCategory category)
         {
             using (DataBaseTablesDataContext dataContext = new DataBaseTablesDataContext())
             {
@@ -75,14 +75,21 @@ namespace Zad4Database.MyCategory
             {
 
                 ProductCategory output = dataContext.ProductCategory.SingleOrDefault(productCategory => productCategory.ProductCategoryID == id);
-
-                if (output != null)
+                try
                 {
-                    dataContext.ProductCategory.DeleteOnSubmit(output);
-                    dataContext.SubmitChanges();
+                    if (output != null)
+                    {
+
+                        dataContext.ProductCategory.DeleteOnSubmit(output);
+                        dataContext.SubmitChanges();
+                    }
+                }
+                catch (System.Data.SqlClient.SqlException e)
+                {
+                    throw e;
                 }
             }
         }
-
     }
+
 }

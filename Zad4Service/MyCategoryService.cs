@@ -26,7 +26,16 @@ namespace Zad4Service
         }
         public void DeleteProductCategory(int id)
         {
-            myCategoryRepository.DeleteProductCategory(id);
+
+            try
+            {
+                myCategoryRepository.DeleteProductCategory(id);
+            }
+            catch (System.Data.SqlClient.SqlException e)
+            {
+                throw e;
+            }
+         
         }
 
         public List<MyCategory> GetAllProductCategories()
