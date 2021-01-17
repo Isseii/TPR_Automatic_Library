@@ -139,7 +139,7 @@ namespace Zad4ViewModel
                 ProductCategory = model.GetMyProductCategoryById(productCategory.Id).First();
 
             });
-            InfoWindow.ShowInfoWindow();
+            InfoWindow.ShowInfoWindow(this);
         }
 
         private IModel model;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,9 +16,11 @@ namespace Zad4View
             MessageBox.Show(err, errMessage, MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
-        public void ShowInfoWindow()
+        public void ShowInfoWindow<T>(T viewModel) where T : INotifyPropertyChanged
         {
-            new InfoWindow().Show();
+            var window = new InfoWindow();
+            window.DataContext = viewModel;
+            window.Show();
         }
     }
 }
