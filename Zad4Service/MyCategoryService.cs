@@ -16,7 +16,7 @@ namespace Zad4Service
             this.myCategoryRepository = new MyCategoryRepository(new DataBaseTablesDataContext());
         }
 
-        public void AddProductCategory( String name, String date)
+        public void AddProductCategory(String name, String date)
         {
             ProductCategory category = new ProductCategory();
             category.Name = name;

@@ -10,24 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Zad4ViewModel;
 
 namespace Zad4View
 {
     /// <summary>
-    /// Logika interakcji dla klasy MainWindow.xaml
+    /// Interaction logic for InfoWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class InfoWindow : Window
     {
-        public MainWindow()
+        public InfoWindow()
         {
             InitializeComponent();
-            var viewModel = new ViewModel();
-            viewModel.MessageBox = new WindowManager();
-            viewModel.InfoWindow = new WindowManager();
-            DataContext = viewModel;
         }
     }
 }
