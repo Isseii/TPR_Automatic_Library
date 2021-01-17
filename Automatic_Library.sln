@@ -53,6 +53,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zad4View", "Zad4View\Zad4Vi
 		{675C2199-A90E-47DC-856B-3AFE0478D125} = {675C2199-A90E-47DC-856B-3AFE0478D125}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zad4MVVMTest", "Zad4MVVMTest\Zad4MVVMTest.csproj", "{C3D0CA21-02DE-4295-AD74-C77CF719AE50}"
+	ProjectSection(ProjectDependencies) = postProject
+		{675C2199-A90E-47DC-856B-3AFE0478D125} = {675C2199-A90E-47DC-856B-3AFE0478D125}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -107,6 +112,10 @@ Global
 		{4D2E9FD8-6BEC-42D8-BA40-30D6A1F2980D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D2E9FD8-6BEC-42D8-BA40-30D6A1F2980D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D2E9FD8-6BEC-42D8-BA40-30D6A1F2980D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3D0CA21-02DE-4295-AD74-C77CF719AE50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3D0CA21-02DE-4295-AD74-C77CF719AE50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3D0CA21-02DE-4295-AD74-C77CF719AE50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3D0CA21-02DE-4295-AD74-C77CF719AE50}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

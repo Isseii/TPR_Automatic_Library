@@ -53,7 +53,12 @@ namespace Zad4Database.MyCategory
                 holder.rowguid = category.rowguid;
 
                 dataContext.ProductCategory.InsertOnSubmit(holder);
-                dataContext.SubmitChanges(ConflictMode.ContinueOnConflict);
+                try
+                {
+                    dataContext.SubmitChanges(ConflictMode.ContinueOnConflict);
+
+                }catch (Exception e) {}
+               
             }
         }
 

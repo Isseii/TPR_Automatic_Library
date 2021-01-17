@@ -28,11 +28,22 @@ namespace Zad4ViewModel
 
         public ViewModel()
         {
-            Model = new Model();
+            Model = new ModelWrapper();
             AddCategory = new RelayCommand(AddMyCategory);
             RemoveCategory = new RelayCommand(RemoveMyCategory);
             UpdateCategory = new RelayCommand(UpdateMyCategory);
-            GetAllData = new RelayCommand(() => Model = new Model());
+            GetAllData = new RelayCommand(() => Model = new ModelWrapper());
+            Info = new RelayCommand(GetInfo);
+        }
+
+        public ViewModel(IModelWrapper model) 
+        {
+            this.model = model;
+            ProductCategories = new ObservableCollection<MyCategory>(model.GetAllProductCategories());
+            AddCategory = new RelayCommand(AddMyCategory);
+            RemoveCategory = new RelayCommand(RemoveMyCategory);
+            UpdateCategory = new RelayCommand(UpdateMyCategory);
+            GetAllData = new RelayCommand(() => ProductCategories = new ObservableCollection<MyCategory>(Model.GetAllProductCategories()));
             Info = new RelayCommand(GetInfo);
         }
 
@@ -42,7 +53,7 @@ namespace Zad4ViewModel
         }
 
 
-        public IModel Model 
+        public IModelWrapper Model 
         {
             get { return model; }
             set
@@ -137,7 +148,7 @@ namespace Zad4ViewModel
                         {
                             model.DeleteProductCategory(productCategory.Id);
                         }
-                        catch (System.Data.SqlClient.SqlException e)
+                        catch (Exception e)
                         {
                             MessageBox.Show(e.ToString(), "Sql forbidden operation");
                         } 
@@ -163,29 +174,30 @@ namespace Zad4ViewModel
 
         public void GetInfo()
         {
-            Task.Run(() =>
-            {
-          
-                    if ( productCategory == null)
-                    {
-                        MessageBox.Show("Select any object!", "Error");
 
-                    }
-                    else
-                    {
+            if (productCategory == null)
+            {
+                MessageBox.Show("Select any object!", "Error");
+
+            }
+            else
+            {
+                Task.Run(() =>
+                       {
+          
+                    
                         ProductCategoriesInfo = new ObservableCollection<MyCategory>();
                         ProductCategoriesInfo.Add(model.GetMyProductCategoryById(productCategory.Id).First());
                         ProductCategoryInfo = model.GetMyProductCategoryById(productCategory.Id).First();
-
-                        InfoWindow.ShowInfoWindow(this);
-                    }
+                    
            
-              });
+                       });
 
+            InfoWindow.ShowInfoWindow(this);
+            }
+        }
 
-}
-
-        private IModel model;
+        private IModelWrapper model;
         private MyCategory productCategory;
         private ObservableCollection<MyCategory> productCategories;
         private MyCategory productCategoryInfo;

@@ -42,9 +42,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DetailViewModel.cs" />
+    <Compile Include="IModelWrapper.cs" />
     <Compile Include="Interfaces\IMessageBox.cs" />
     <Compile Include="Interfaces\IInfoWindow.cs" />
+    <Compile Include="ModelWrapper.cs" />
     <Compile Include="MVVMLight\RelayCommand.cs" />
+    <Compile Include="MyCategory.cs" />
     <Compile Include="ViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
