@@ -25,20 +25,7 @@ namespace Zad4MVVMTest
         }
         public void DeleteProductCategory(int id)
         {
-            try
-            {
-                foreach (var x in service)
-                {
-                    if (x.Id == id)
-                    {
-                        service.Remove(x);
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
+            service.RemoveAll(cat => cat.Id == id);
         }
         public List<MyCategory> GetAllProductCategories()
         {

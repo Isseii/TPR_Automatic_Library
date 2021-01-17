@@ -50,8 +50,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="TestingModel.cs" />
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="ModelTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModelTest.cs" />
+    <Compile Include="WindowManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

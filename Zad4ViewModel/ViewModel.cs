@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Zad4Model;
-using System.Windows.Input;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
+using System.Windows.Input;
 using TP.GraphicalData.ViewModel.MVVMLight;
 using Zad4ViewModel.Interfaces;
 
@@ -25,6 +22,8 @@ namespace Zad4ViewModel
 
         public IInfoWindow InfoWindow { get; set; }
         public IMessageBox MessageBox { get; set; }
+
+        public bool disableAsync { get; set; }
 
         public ViewModel()
         {
@@ -52,7 +51,6 @@ namespace Zad4ViewModel
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-
         public IModelWrapper Model 
         {
             get { return model; }
@@ -60,7 +58,7 @@ namespace Zad4ViewModel
             {
                 model = value;
 
-                Task.Run(() =>
+                handleAsync(() =>
                 {
                     ProductCategories = new ObservableCollection<MyCategory>(value.GetAllProductCategories());
                 });
@@ -126,7 +124,7 @@ namespace Zad4ViewModel
             }
             else
             {
-                Task.Run(() =>
+                handleAsync(() =>
                 {
                     model.AddProductCategory(productCategory.Name, productCategory.Date.ToString());
                 });
@@ -135,26 +133,21 @@ namespace Zad4ViewModel
 
         public void RemoveMyCategory()
         {
-           
-                Task.Run(() =>
+            if (productCategory.Id == 0)
+            {
+                MessageBox.Show("Id field incorrect value", "Error");
+            }
+            else
+            {
+                try
                 {
-                    if (productCategory.Id == 0)
-                    {
-                        MessageBox.Show("Id field incorrect value", "Error");
-                    }
-                    else
-                    {
-                        try
-                        {
-                            model.DeleteProductCategory(productCategory.Id);
-                        }
-                        catch (Exception e)
-                        {
-                            MessageBox.Show(e.ToString(), "Sql forbidden operation");
-                        } 
-                    }
-                });
-           
+                    handleAsync(() => model.DeleteProductCategory(productCategory.Id));
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.ToString(), "Sql forbidden operation");
+                }
+            }
         }
 
         public void UpdateMyCategory()
@@ -165,8 +158,8 @@ namespace Zad4ViewModel
             }
             else
             {
-                Task.Run(() =>
-                { 
+                handleAsync(() =>
+                {
                     model.UpdateProductCategory(Name, productCategory.Id);
                 });
             }
@@ -182,18 +175,25 @@ namespace Zad4ViewModel
             }
             else
             {
-                Task.Run(() =>
-                       {
-          
-                    
-                        ProductCategoriesInfo = new ObservableCollection<MyCategory>();
-                        ProductCategoriesInfo.Add(model.GetMyProductCategoryById(productCategory.Id).First());
-                        ProductCategoryInfo = model.GetMyProductCategoryById(productCategory.Id).First();
-                    
-           
-                       });
+                handleAsync(() =>
+                {
+                    ProductCategoriesInfo = new ObservableCollection<MyCategory>();
+                    ProductCategoriesInfo.Add(model.GetMyProductCategoryById(productCategory.Id).First());
+                    ProductCategoryInfo = model.GetMyProductCategoryById(productCategory.Id).First();
+                });
 
             InfoWindow.ShowInfoWindow(this);
+            }
+        }
+        private void handleAsync(Action a)
+        {
+            if (disableAsync)
+            {
+                a();
+            }
+            else
+            {
+                Task.Run(a);
             }
         }
 
